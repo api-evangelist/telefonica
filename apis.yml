@@ -1,8 +1,8 @@
 aid: telefonica
 name: Telef�nica
 description: >-
-  Transform your business, offer new solutions and develop applications faster,
-  more easily and with more capacity.DISCOVER HOW TEST APIS 
+  Transform your business, offer new solutions and develop applications faster, more
+  easily and with more capacity.DISCOVER HOW TEST APIS.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -18,8 +18,8 @@ apis:
   - aid: telefonica:telefonica
     name: Telef�nica
     description: >-
-      Transform your business, offer new solutions and develop applications
-      faster, more easily and with more capacity.DISCOVER HOW TEST APIS 
+      Transform your business, offer new solutions and develop applications faster,
+      more easily and with more capacity.DISCOVER HOW TEST APIS.
     humanURL: ' https://opengateway.telefonica.com/en'
     tags:
       - API
