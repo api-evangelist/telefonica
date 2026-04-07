@@ -7,8 +7,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-03-01'
 modified: '2026-03-16'
 url: >-
@@ -21,8 +20,7 @@ apis:
       Transform your business, offer new solutions and develop applications faster,
       more easily and with more capacity.DISCOVER HOW TEST APIS.
     humanURL: ' https://opengateway.telefonica.com/en'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://opengateway.telefonica.com/en'
