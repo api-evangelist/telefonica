@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "camara": "https://camaraproject.org/",
+    "telefonica": "https://opengateway.telefonica.com/",
+
+    "Device": "schema:Device",
+    "phoneNumber": "schema:telephone",
+    "networkAccessIdentifier": "camara:networkAccessIdentifier",
+    "ipv4Address": "schema:ipAddressFamily",
+    "ipv6Address": "schema:ipAddressFamily",
+
+    "NumberVerificationRequest": "camara:NumberVerificationRequest",
+    "devicePhoneNumberVerified": "camara:devicePhoneNumberVerified",
+
+    "SimSwapCheckRequest": "camara:SimSwapCheckRequest",
+    "swapped": "camara:swapped",
+    "latestSimChange": "schema:dateModified",
+    "maxAge": "camara:maxAge",
+
+    "KycMatchRequest": "schema:CheckAction",
+    "givenName": "schema:givenName",
+    "familyName": "schema:familyName",
+    "birthdate": "schema:birthDate",
+    "email": "schema:email",
+    "address": "schema:address",
+    "postalCode": "schema:postalCode",
+    "country": "schema:addressCountry",
+
+    "LocationVerificationRequest": "camara:LocationVerificationRequest",
+    "verificationResult": "camara:verificationResult",
+    "area": "schema:spatialCoverage",
+    "areaType": "camara:areaType",
+    "center": "schema:GeoCoordinates",
+    "latitude": "schema:latitude",
+    "longitude": "schema:longitude",
+    "radius": "schema:geoRadius",
+
+    "QodSession": "schema:Event",
+    "sessionId": "schema:identifier",
+    "qosProfile": "camara:qosProfile",
+    "qosStatus": "schema:status",
+    "startedAt": "schema:startDate",
+    "expiresAt": "schema:endDate",
+    "duration": "schema:duration",
+
+    "RoamingStatusResponse": "camara:RoamingStatusResponse",
+    "roaming": "camara:roaming",
+    "countryCode": "schema:addressCountry",
+    "countryName": "schema:name"
+  }
+}

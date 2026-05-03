@@ -1,0 +1,107 @@
+extends:
+  - spectral:oas
+
+rules:
+  telefonica-operation-ids-camel-case:
+    description: Operation IDs must use camelCase naming convention.
+    message: "Operation ID '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  telefonica-operations-have-summaries:
+    description: All operations must have a summary.
+    message: "Operation must include a summary."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  telefonica-title-case-summaries:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  telefonica-operations-have-tags:
+    description: All operations must be tagged.
+    message: "Operation must have at least one tag."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  telefonica-responses-have-descriptions:
+    description: All responses must have descriptions.
+    message: "Response must include a description."
+    severity: error
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  telefonica-openid-security-scheme:
+    description: Telefónica Open Gateway APIs must use OpenID Connect authentication.
+    message: "Security scheme should use OpenID Connect."
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - openIdConnect
+
+  telefonica-phone-number-e164-pattern:
+    description: Phone number fields must use E.164 format pattern.
+    message: "Phone number field should define E.164 pattern validation."
+    severity: warn
+    given: "$.components.schemas[*].properties.phoneNumber"
+    then:
+      field: pattern
+      function: truthy
+
+  telefonica-error-response-schema:
+    description: Error responses must define a schema.
+    message: "Error response must include a schema."
+    severity: error
+    given: "$.paths[*][*].responses[4*].content.application/json"
+    then:
+      field: schema
+      function: truthy
+
+  telefonica-servers-defined:
+    description: API must define production and sandbox servers.
+    message: "API must include a servers array."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  telefonica-camara-version:
+    description: CAMARA APIs should include version information in info.
+    message: "API must define a version in info.version."
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  telefonica-license-defined:
+    description: Open Gateway APIs must include license information.
+    message: "API must define license information."
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy

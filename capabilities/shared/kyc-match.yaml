@@ -1,0 +1,86 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Telefónica KYC Match API"
+  description: "Validate user identity data against mobile carrier records for KYC compliance."
+  tags:
+    - Telefónica
+    - KYC
+    - Identity Verification
+    - Financial Services
+    - CAMARA
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELEFONICA_ACCESS_TOKEN: TELEFONICA_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: telefonica-kyc
+      baseUri: https://opengateway.telefonica.com/v1
+      description: "Telefónica KYC Match API via Open Gateway."
+      authentication:
+        type: bearer
+        token: "{{TELEFONICA_ACCESS_TOKEN}}"
+      resources:
+        - name: kyc-match
+          path: /kyc-match
+          description: "Know Your Customer identity matching endpoint."
+          operations:
+            - name: match-kyc
+              method: POST
+              description: "Validate identity data against carrier records."
+              body:
+                type: json
+                data:
+                  phoneNumber: "{{tools.phoneNumber}}"
+                  givenName: "{{tools.givenName}}"
+                  familyName: "{{tools.familyName}}"
+                  birthdate: "{{tools.birthdate}}"
+                  email: "{{tools.email}}"
+                  address: "{{tools.address}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8103
+      namespace: telefonica-kyc-rest
+      resources:
+        - path: /v1/kyc-match
+          name: kyc-match
+          operations:
+            - method: POST
+              name: match-kyc
+              description: "Match identity data against carrier records."
+              call: "telefonica-kyc.match-kyc"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9103
+      namespace: telefonica-kyc-mcp
+      transport: http
+      tools:
+        - name: match-kyc
+          description: "Validate user identity (name, birthdate, address, email) against Telefónica carrier data for KYC compliance."
+          hints:
+            readOnly: true
+          call: "telefonica-kyc.match-kyc"
+          with:
+            phoneNumber: "tools.phoneNumber"
+            givenName: "tools.givenName"
+            familyName: "tools.familyName"
+            birthdate: "tools.birthdate"
+            email: "tools.email"
+          outputParameters:
+            - type: object
+              mapping: "$."

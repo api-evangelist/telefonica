@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://opengateway.telefonica.com/v1/location-verification/verify",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "device": {
+        "phoneNumber": "+34123456789"
+      },
+      "area": {
+        "areaType": "CIRCLE",
+        "center": {
+          "latitude": 40.416775,
+          "longitude": -3.703790
+        },
+        "radius": 2000
+      },
+      "maxAge": 120
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "verificationResult": "TRUE",
+      "lastLocationTime": "2026-04-28T14:30:00Z"
+    }
+  }
+}

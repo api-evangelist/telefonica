@@ -1,0 +1,37 @@
+{
+  "title": "Telefónica CAMARA Device Structure",
+  "description": "Field documentation for the Device identifier object used across Telefónica Open Gateway CAMARA APIs.",
+  "type": "object",
+  "note": "At least one identifier field must be provided. phoneNumber is most commonly used.",
+  "fields": [
+    {
+      "name": "phoneNumber",
+      "type": "string",
+      "required": false,
+      "description": "E.164 formatted phone number (e.g., +34123456789). Most commonly used identifier.",
+      "pattern": "^\\+[1-9][0-9]{4,14}$"
+    },
+    {
+      "name": "networkAccessIdentifier",
+      "type": "string",
+      "required": false,
+      "description": "Network Access Identifier for cellular networks."
+    },
+    {
+      "name": "ipv4Address",
+      "type": "object",
+      "required": false,
+      "description": "Public IPv4 address and optional port for device identification.",
+      "fields": [
+        {"name": "publicAddress", "type": "string (IPv4)", "description": "Public IPv4 address."},
+        {"name": "publicPort", "type": "integer", "description": "Public port (0-65535)."}
+      ]
+    },
+    {
+      "name": "ipv6Address",
+      "type": "string (IPv6)",
+      "required": false,
+      "description": "IPv6 address of the device."
+    }
+  ]
+}

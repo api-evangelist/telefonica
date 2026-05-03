@@ -1,0 +1,160 @@
+vocabulary:
+  provider: Telefónica
+  description: >-
+    Vocabulary for Telefónica Open Gateway, covering CAMARA network API
+    standards, mobile identity verification, fraud prevention, quality of
+    service, and telecommunications concepts.
+  version: '2026-05-03'
+  terms:
+    - term: Open Gateway
+      definition: >-
+        Telefónica's initiative exposing standardized network capabilities
+        as APIs following CAMARA open standards, enabling developers to
+        leverage telecom network infrastructure for authentication, fraud
+        prevention, location services, and quality of service.
+      synonyms:
+        - Telefónica Open Gateway
+      relatedTerms:
+        - CAMARA
+        - GSMA
+
+    - term: CAMARA
+      definition: >-
+        Cloud and Edge for Mobile Access and Real-time Execution - an open
+        source project by the GSMA developing standardized network APIs
+        that can be implemented across multiple telecom operators.
+      synonyms:
+        - CAMARA Project
+        - GSMA CAMARA
+      relatedTerms:
+        - Open Gateway
+        - Number Verification API
+        - SIM Swap API
+
+    - term: Number Verification API
+      definition: >-
+        A CAMARA API that verifies a user's phone number by confirming
+        the device is connected via the claimed phone number's SIM card,
+        enabling passwordless authentication without OTPs.
+      synonyms:
+        - Number Verification
+        - Phone Number Verification
+      relatedTerms:
+        - SIM Swap API
+        - E.164
+
+    - term: SIM Swap API
+      definition: >-
+        A CAMARA API that detects recent SIM card swaps on a mobile number.
+        SIM swap fraud involves attackers convincing carriers to transfer
+        a victim's phone number to a new SIM they control.
+      synonyms:
+        - SIM Swap Detection
+      relatedTerms:
+        - Number Verification API
+        - Fraud Prevention
+
+    - term: KYC Match API
+      definition: >-
+        Know Your Customer Match API - validates identity data fields (name,
+        birthdate, address, email) against mobile carrier records, returning
+        match/no-match results without exposing stored personal data.
+      synonyms:
+        - Know Your Customer
+        - KYC
+      relatedTerms:
+        - Identity Verification
+        - Financial Services
+
+    - term: Location Verification API
+      definition: >-
+        A CAMARA API that verifies a device's geographic location using
+        network data instead of GPS, confirming presence within a specified
+        circular or polygon area.
+      synonyms:
+        - Device Location Verification
+      relatedTerms:
+        - E.164
+        - Device
+
+    - term: Quality on Demand API
+      definition: >-
+        A CAMARA API enabling applications to request guaranteed network
+        quality for a specific device session by applying a QoS profile
+        that ensures bandwidth and latency parameters for a defined duration.
+      synonyms:
+        - QoD API
+        - QoD Mobile API
+      relatedTerms:
+        - QoS Profile
+        - Session
+
+    - term: QoS Profile
+      definition: >-
+        A predefined quality of service configuration for the Quality on
+        Demand API. Profiles range from QOS_E (highest priority/enterprise)
+        to QOS_S (standard), QOS_M (medium), and QOS_L (low priority).
+      values:
+        - QOS_E
+        - QOS_S
+        - QOS_M
+        - QOS_L
+      relatedTerms:
+        - Quality on Demand API
+
+    - term: E.164
+      definition: >-
+        The international telephone numbering plan standard specifying the
+        format for global phone numbers. Telefónica Open Gateway APIs require
+        phone numbers in E.164 format: + followed by country code and number
+        (e.g., +34123456789 for Spain).
+      synonyms:
+        - International Phone Number Format
+      relatedTerms:
+        - Number Verification API
+
+    - term: Device Roaming Status API
+      definition: >-
+        A CAMARA API that returns whether a device is currently roaming on
+        a foreign network and the country code of the network it's connected
+        to, using carrier data for privacy-safe verification.
+      synonyms:
+        - Device Status API
+        - Roaming Status
+      relatedTerms:
+        - Roaming
+
+    - term: Roaming
+      definition: >-
+        Using mobile network services while traveling outside the subscriber's
+        home network coverage area, typically connecting to a partner carrier's
+        network in another country.
+      relatedTerms:
+        - Device Roaming Status API
+
+    - term: Network Access Identifier
+      definition: >-
+        A unique identifier used in cellular networks to identify a device
+        connection. Used alongside phone number and IP address as alternative
+        device identifiers in CAMARA APIs.
+      synonyms:
+        - NAI
+      relatedTerms:
+        - Device
+
+    - term: Scam Signal API
+      definition: >-
+        A Telefónica Open Gateway API that enables companies to protect
+        customers from phishing and voice fraud by detecting active scam
+        calls in real time using Telefónica network intelligence.
+      relatedTerms:
+        - Fraud Prevention
+
+    - term: Age Verification API
+      definition: >-
+        A Telefónica Open Gateway API (available in UK) that confirms in
+        real time whether a mobile user meets a specified age threshold,
+        enabling privacy-preserving age gating without sharing personal data.
+      relatedTerms:
+        - Compliance
+        - E-Commerce

@@ -1,0 +1,104 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Telefónica SIM Swap API"
+  description: "Detect recent SIM card swaps on a mobile number to prevent account takeover fraud."
+  tags:
+    - Telefónica
+    - SIM Swap
+    - Fraud Prevention
+    - Mobile Security
+    - CAMARA
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELEFONICA_ACCESS_TOKEN: TELEFONICA_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: telefonica-sim-swap
+      baseUri: https://opengateway.telefonica.com/v1
+      description: "Telefónica SIM Swap API via Open Gateway."
+      authentication:
+        type: bearer
+        token: "{{TELEFONICA_ACCESS_TOKEN}}"
+      resources:
+        - name: sim-swap
+          path: /sim-swap
+          description: "SIM swap detection endpoints."
+          operations:
+            - name: check-sim-swap
+              method: POST
+              description: "Check whether a recent SIM swap occurred on a phone number."
+              body:
+                type: json
+                data:
+                  phoneNumber: "{{tools.phoneNumber}}"
+                  maxAge: "{{tools.maxAge}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-sim-swap-date
+              method: POST
+              description: "Get the date of the most recent SIM swap."
+              body:
+                type: json
+                data:
+                  phoneNumber: "{{tools.phoneNumber}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8102
+      namespace: telefonica-sim-swap-rest
+      resources:
+        - path: /v1/sim-swap/check
+          name: check
+          operations:
+            - method: POST
+              name: check-sim-swap
+              description: "Check for recent SIM swap on a phone number."
+              call: "telefonica-sim-swap.check-sim-swap"
+              with:
+                phoneNumber: "rest.phoneNumber"
+                maxAge: "rest.maxAge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9102
+      namespace: telefonica-sim-swap-mcp
+      transport: http
+      tools:
+        - name: check-sim-swap
+          description: "Check if a SIM swap occurred recently on a phone number (fraud signal)."
+          hints:
+            readOnly: true
+          call: "telefonica-sim-swap.check-sim-swap"
+          with:
+            phoneNumber: "tools.phoneNumber"
+            maxAge: "tools.maxAge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-sim-swap-date
+          description: "Get the date of the most recent SIM swap for a phone number."
+          hints:
+            readOnly: true
+          call: "telefonica-sim-swap.get-sim-swap-date"
+          with:
+            phoneNumber: "tools.phoneNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."

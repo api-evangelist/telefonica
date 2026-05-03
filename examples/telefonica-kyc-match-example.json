@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://opengateway.telefonica.com/v1/kyc-match",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "phoneNumber": "+34123456789",
+      "givenName": "Juan",
+      "familyName": "Garcia",
+      "birthdate": "1985-06-15",
+      "email": "juan.garcia@example.com"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "phoneNumberMatch": "true",
+      "givenNameMatch": "true",
+      "familyNameMatch": "true",
+      "birthdateMatch": "true",
+      "emailMatch": "false"
+    }
+  }
+}

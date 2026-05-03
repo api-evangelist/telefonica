@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telefonica/main/json-schema/telefonica-device-schema.json",
+  "title": "Telefónica CAMARA Device",
+  "description": "A device identifier object used across Telefónica Open Gateway CAMARA APIs for device identification.",
+  "type": "object",
+  "properties": {
+    "phoneNumber": {
+      "type": "string",
+      "description": "E.164 formatted phone number of the device.",
+      "pattern": "^\\+[1-9][0-9]{4,14}$",
+      "example": "+34123456789"
+    },
+    "networkAccessIdentifier": {
+      "type": "string",
+      "description": "Network Access Identifier (NAI) of the device."
+    },
+    "ipv4Address": {
+      "type": "object",
+      "description": "IPv4 address of the device.",
+      "properties": {
+        "publicAddress": {
+          "type": "string",
+          "description": "Public IPv4 address.",
+          "format": "ipv4"
+        },
+        "publicPort": {
+          "type": "integer",
+          "description": "Public port number.",
+          "minimum": 0,
+          "maximum": 65535
+        }
+      }
+    },
+    "ipv6Address": {
+      "type": "string",
+      "description": "IPv6 address of the device.",
+      "format": "ipv6"
+    }
+  },
+  "minProperties": 1
+}

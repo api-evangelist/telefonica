@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: Telefónica Know Your Customer Match API
+  description: >-
+    The KYC Match API validates a user's contact information against reliable
+    mobile carrier data, enabling quick identity verification without sharing
+    sensitive personal data. Returns match/no-match results for name, address,
+    phone number, email, and date of birth fields. Used for KYC compliance,
+    e-commerce fraud prevention, and financial services identity verification.
+    Based on CAMARA open standards. Available in Spain, Germany, Brazil, and UK.
+  version: 0.3.0
+  contact:
+    url: https://opengateway.telefonica.com/en/apis/kyc-match
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Production
+  - url: https://sandbox.opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Sandbox
+paths:
+  /kyc-match:
+    post:
+      operationId: matchKyc
+      summary: Match KYC Data
+      description: >-
+        Validates provided identity data against mobile carrier records.
+        Returns match results for each provided field without exposing the
+        actual stored data. Supports partial matching for flexible verification.
+      tags:
+        - KYC Match
+      security:
+        - openIdConnect:
+            - kyc-match:match
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KycMatchRequest'
+      responses:
+        '200':
+          description: KYC match results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KycMatchResponse'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '422':
+          description: Unable to process match request.
+components:
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  schemas:
+    KycMatchRequest:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number of the user to verify in E.164 format.
+          pattern: '^\+[1-9][0-9]{4,14}$'
+        idDocument:
+          type: string
+          description: Government ID document number.
+        name:
+          type: string
+          description: Full name to verify.
+        givenName:
+          type: string
+          description: First/given name to verify.
+        familyName:
+          type: string
+          description: Last/family name to verify.
+        nameKanaHankaku:
+          type: string
+          description: Name in half-width katakana (for Japanese carriers).
+        nameKanaZenkaku:
+          type: string
+          description: Name in full-width katakana.
+        middleNames:
+          type: string
+          description: Middle names to verify.
+        familyNameAtBirth:
+          type: string
+          description: Family name at birth (maiden name).
+        address:
+          type: string
+          description: Full address string to verify.
+        streetName:
+          type: string
+        streetNumber:
+          type: string
+        postalCode:
+          type: string
+        region:
+          type: string
+          description: State/region to verify.
+        locality:
+          type: string
+          description: City/locality to verify.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        houseNumberExtension:
+          type: string
+        birthdate:
+          type: string
+          format: date
+          description: Date of birth in YYYY-MM-DD format.
+        email:
+          type: string
+          format: email
+          description: Email address to verify.
+        gender:
+          type: string
+          enum:
+            - MALE
+            - FEMALE
+            - OTHER
+    KycMatchResponse:
+      type: object
+      properties:
+        phoneNumberMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        idDocumentMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        nameMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        givenNameMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        familyNameMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        addressMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        birthdateMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+        emailMatch:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - "not_available"
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string

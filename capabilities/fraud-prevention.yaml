@@ -1,0 +1,183 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Telefónica Fraud Prevention"
+  description: >-
+    Fraud prevention capability combining Telefónica's Number Verification,
+    SIM Swap, KYC Match, and Location Verification APIs into a unified workflow.
+    Enables financial services, e-commerce, and insurance companies to verify
+    user identity, detect account takeover attempts, and validate location
+    claims using Telefónica's carrier network data without compromising privacy.
+  tags:
+    - Telefónica
+    - Fraud Prevention
+    - Authentication
+    - Identity Verification
+    - KYC
+    - Financial Services
+    - CAMARA
+    - Open Gateway
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELEFONICA_ACCESS_TOKEN: TELEFONICA_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: telefonica-number-verification
+      location: ./shared/number-verification.yaml
+    - import: telefonica-sim-swap
+      location: ./shared/sim-swap.yaml
+    - import: telefonica-kyc
+      location: ./shared/kyc-match.yaml
+    - import: telefonica-location
+      location: ./shared/location-verification.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: telefonica-fraud-api
+      description: "Unified REST API for Telefónica fraud prevention workflows."
+      resources:
+        - path: /v1/verification/phone-number
+          name: phone-number-verification
+          description: "Phone number verification using carrier data."
+          operations:
+            - method: POST
+              name: verify-phone-number
+              description: "Verify a phone number matches the device's SIM connection."
+              call: "telefonica-number-verification.verify-phone-number"
+              with:
+                phoneNumber: "rest.phoneNumber"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/verification/sim-swap
+          name: sim-swap-check
+          description: "SIM swap fraud detection."
+          operations:
+            - method: POST
+              name: check-sim-swap
+              description: "Check for recent SIM swap on a phone number."
+              call: "telefonica-sim-swap.check-sim-swap"
+              with:
+                phoneNumber: "rest.phoneNumber"
+                maxAge: "rest.maxAge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/verification/kyc
+          name: kyc-match
+          description: "KYC identity data matching."
+          operations:
+            - method: POST
+              name: match-kyc
+              description: "Validate identity data against carrier records."
+              call: "telefonica-kyc.match-kyc"
+              with:
+                phoneNumber: "rest.phoneNumber"
+                givenName: "rest.givenName"
+                familyName: "rest.familyName"
+                birthdate: "rest.birthdate"
+                email: "rest.email"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/verification/location
+          name: location-verification
+          description: "Device location verification."
+          operations:
+            - method: POST
+              name: verify-location
+              description: "Verify device is within a geographic area."
+              call: "telefonica-location.verify-device-location"
+              with:
+                device: "rest.device"
+                area: "rest.area"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: telefonica-fraud-mcp
+      transport: http
+      description: "MCP server for AI-assisted Telefónica fraud prevention workflows."
+      tools:
+        - name: verify-phone-number
+          description: "Verify that a user's phone number matches their device's SIM card connection using Telefónica carrier data."
+          hints:
+            readOnly: true
+          call: "telefonica-number-verification.verify-phone-number"
+          with:
+            phoneNumber: "tools.phoneNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-device-phone-number
+          description: "Get the phone number associated with the user's current device connection (for passwordless login)."
+          hints:
+            readOnly: true
+          call: "telefonica-number-verification.get-phone-number"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-sim-swap
+          description: "Check if a SIM swap fraud attempt occurred recently on a phone number."
+          hints:
+            readOnly: true
+          call: "telefonica-sim-swap.check-sim-swap"
+          with:
+            phoneNumber: "tools.phoneNumber"
+            maxAge: "tools.maxAge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-sim-swap-date
+          description: "Get the date of the most recent SIM swap for detailed fraud investigation."
+          hints:
+            readOnly: true
+          call: "telefonica-sim-swap.get-sim-swap-date"
+          with:
+            phoneNumber: "tools.phoneNumber"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: match-kyc-identity
+          description: "Validate user identity data (name, birthdate, address, email) against Telefónica carrier records for KYC compliance."
+          hints:
+            readOnly: true
+          call: "telefonica-kyc.match-kyc"
+          with:
+            phoneNumber: "tools.phoneNumber"
+            givenName: "tools.givenName"
+            familyName: "tools.familyName"
+            birthdate: "tools.birthdate"
+            email: "tools.email"
+            address: "tools.address"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: verify-device-location
+          description: "Verify that a user's device is present within a specified geographic area using network data."
+          hints:
+            readOnly: true
+          call: "telefonica-location.verify-device-location"
+          with:
+            device: "tools.device"
+            area: "tools.area"
+            maxAge: "tools.maxAge"
+          outputParameters:
+            - type: object
+              mapping: "$."

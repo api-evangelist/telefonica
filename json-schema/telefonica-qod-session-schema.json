@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/telefonica/main/json-schema/telefonica-qod-session-schema.json",
+  "title": "Telefónica Quality on Demand Session",
+  "description": "A Quality on Demand session providing guaranteed network quality for a device.",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique session identifier."
+    },
+    "device": {
+      "$ref": "telefonica-device-schema.json"
+    },
+    "qosProfile": {
+      "type": "string",
+      "enum": ["QOS_E", "QOS_S", "QOS_M", "QOS_L"],
+      "description": "QoS profile: E=highest priority, S=standard, M=medium, L=low priority."
+    },
+    "qosStatus": {
+      "type": "string",
+      "enum": ["REQUESTED", "AVAILABLE", "UNAVAILABLE"],
+      "description": "Current session status."
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 86400,
+      "description": "Session duration in seconds."
+    }
+  },
+  "required": ["sessionId", "qosProfile", "qosStatus"]
+}
