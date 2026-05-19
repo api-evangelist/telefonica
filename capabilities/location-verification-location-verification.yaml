@@ -1,0 +1,78 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telefónica Location Verification API — Location Verification
+  description: 'Telefónica Location Verification API — Location Verification. 1 operations. Lead operation: Verify Device
+    Location. Self-contained Naftiko capability covering one Telefonica business surface.'
+  tags:
+  - Telefonica
+  - Location Verification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEFONICA_API_KEY: TELEFONICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: location-verification-location-verification
+    baseUri: https://opengateway.telefonica.com/v1
+    description: Telefónica Location Verification API — Location Verification business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: location-verification-verify
+      path: /location-verification/verify
+      operations:
+      - name: verifydevicelocation
+        method: POST
+        description: Verify Device Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: location-verification-location-verification-rest
+    port: 8080
+    description: REST adapter for Telefónica Location Verification API — Location Verification. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/location-verification/verify
+      name: location-verification-verify
+      description: REST surface for location-verification-verify.
+      operations:
+      - method: POST
+        name: verifydevicelocation
+        description: Verify Device Location
+        call: location-verification-location-verification.verifydevicelocation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: location-verification-location-verification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telefónica Location Verification API — Location Verification. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: verify-device-location
+      description: Verify Device Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: location-verification-location-verification.verifydevicelocation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

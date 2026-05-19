@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telefónica Device Roaming Status API — Device Roaming
+  description: 'Telefónica Device Roaming Status API — Device Roaming. 1 operations. Lead operation: Get Device Roaming Status.
+    Self-contained Naftiko capability covering one Telefonica business surface.'
+  tags:
+  - Telefonica
+  - Device Roaming
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEFONICA_API_KEY: TELEFONICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: device-roaming-device-roaming
+    baseUri: https://opengateway.telefonica.com/v1
+    description: Telefónica Device Roaming Status API — Device Roaming business capability. Self-contained, no shared references.
+    resources:
+    - name: device-roaming-retrieve
+      path: /device-roaming/retrieve
+      operations:
+      - name: getdeviceroamingstatus
+        method: POST
+        description: Get Device Roaming Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: device-roaming-device-roaming-rest
+    port: 8080
+    description: REST adapter for Telefónica Device Roaming Status API — Device Roaming. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/device-roaming/retrieve
+      name: device-roaming-retrieve
+      description: REST surface for device-roaming-retrieve.
+      operations:
+      - method: POST
+        name: getdeviceroamingstatus
+        description: Get Device Roaming Status
+        call: device-roaming-device-roaming.getdeviceroamingstatus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: device-roaming-device-roaming-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telefónica Device Roaming Status API — Device Roaming. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-device-roaming-status
+      description: Get Device Roaming Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: device-roaming-device-roaming.getdeviceroamingstatus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

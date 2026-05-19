@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telefónica Number Verification API — Number Verification
+  description: 'Telefónica Number Verification API — Number Verification. 2 operations. Lead operation: Get Phone Number.
+    Self-contained Naftiko capability covering one Telefonica business surface.'
+  tags:
+  - Telefonica
+  - Number Verification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEFONICA_API_KEY: TELEFONICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: number-verification-number-verification
+    baseUri: https://opengateway.telefonica.com/v1
+    description: Telefónica Number Verification API — Number Verification business capability. Self-contained, no shared references.
+    resources:
+    - name: number-verification-share
+      path: /number-verification/share
+      operations:
+      - name: getphonenumber
+        method: POST
+        description: Get Phone Number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: number-verification-verify
+      path: /number-verification/verify
+      operations:
+      - name: verifyphonenumber
+        method: POST
+        description: Verify Phone Number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: number-verification-number-verification-rest
+    port: 8080
+    description: REST adapter for Telefónica Number Verification API — Number Verification. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/number-verification/share
+      name: number-verification-share
+      description: REST surface for number-verification-share.
+      operations:
+      - method: POST
+        name: getphonenumber
+        description: Get Phone Number
+        call: number-verification-number-verification.getphonenumber
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/number-verification/verify
+      name: number-verification-verify
+      description: REST surface for number-verification-verify.
+      operations:
+      - method: POST
+        name: verifyphonenumber
+        description: Verify Phone Number
+        call: number-verification-number-verification.verifyphonenumber
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: number-verification-number-verification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telefónica Number Verification API — Number Verification. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: get-phone-number
+      description: Get Phone Number
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: number-verification-number-verification.getphonenumber
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-phone-number
+      description: Verify Phone Number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: number-verification-number-verification.verifyphonenumber
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

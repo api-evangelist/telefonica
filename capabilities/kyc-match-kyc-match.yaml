@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telefónica Know Your Customer Match API — KYC Match
+  description: 'Telefónica Know Your Customer Match API — KYC Match. 1 operations. Lead operation: Match KYC Data. Self-contained
+    Naftiko capability covering one Telefonica business surface.'
+  tags:
+  - Telefonica
+  - KYC Match
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEFONICA_API_KEY: TELEFONICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kyc-match-kyc-match
+    baseUri: https://opengateway.telefonica.com/v1
+    description: Telefónica Know Your Customer Match API — KYC Match business capability. Self-contained, no shared references.
+    resources:
+    - name: kyc-match
+      path: /kyc-match
+      operations:
+      - name: matchkyc
+        method: POST
+        description: Match KYC Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: kyc-match-kyc-match-rest
+    port: 8080
+    description: REST adapter for Telefónica Know Your Customer Match API — KYC Match. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/kyc-match
+      name: kyc-match
+      description: REST surface for kyc-match.
+      operations:
+      - method: POST
+        name: matchkyc
+        description: Match KYC Data
+        call: kyc-match-kyc-match.matchkyc
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kyc-match-kyc-match-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telefónica Know Your Customer Match API — KYC Match. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: match-kyc-data
+      description: Match KYC Data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kyc-match-kyc-match.matchkyc
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
