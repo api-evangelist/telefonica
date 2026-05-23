@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SimSwapCheckResponse",
+  "title": "SimSwapCheckResponse",
+  "type": "object",
+  "properties": {
+    "swapped": {
+      "type": "boolean",
+      "description": "True if a SIM swap was detected within the specified maxAge period."
+    }
+  }
+}

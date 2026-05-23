@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NumberVerificationResponse",
+  "title": "NumberVerificationResponse",
+  "type": "object",
+  "properties": {
+    "devicePhoneNumberVerified": {
+      "type": "boolean",
+      "description": "True if the provided phone number matches the one associated with the device's current network connection."
+    }
+  }
+}

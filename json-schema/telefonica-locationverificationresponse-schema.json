@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocationVerificationResponse",
+  "title": "LocationVerificationResponse",
+  "type": "object",
+  "properties": {
+    "verificationResult": {
+      "type": "string",
+      "description": "Location verification result.",
+      "enum": [
+        "TRUE",
+        "FALSE",
+        "UNKNOWN",
+        "PARTIAL"
+      ]
+    },
+    "matchRate": {
+      "type": "integer",
+      "description": "Confidence percentage (0-100) when result is PARTIAL.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "lastLocationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent location data used."
+    }
+  }
+}

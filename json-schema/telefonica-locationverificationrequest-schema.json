@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocationVerificationRequest",
+  "title": "LocationVerificationRequest",
+  "type": "object",
+  "required": [
+    "device",
+    "area"
+  ],
+  "properties": {
+    "device": {
+      "$ref": "#/components/schemas/Device"
+    },
+    "area": {
+      "$ref": "#/components/schemas/Area"
+    },
+    "maxAge": {
+      "type": "integer",
+      "description": "Maximum age of location data in seconds.",
+      "minimum": 60
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateSessionRequest",
+  "title": "CreateSessionRequest",
+  "type": "object",
+  "required": [
+    "device",
+    "qosProfile",
+    "duration"
+  ],
+  "properties": {
+    "device": {
+      "$ref": "#/components/schemas/Device"
+    },
+    "applicationServer": {
+      "$ref": "#/components/schemas/ApplicationServer"
+    },
+    "qosProfile": {
+      "type": "string",
+      "description": "QoS profile name defining connectivity quality parameters.",
+      "enum": [
+        "QOS_E",
+        "QOS_S",
+        "QOS_M",
+        "QOS_L"
+      ]
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Session duration in seconds. Maximum 86400 (24 hours).",
+      "minimum": 1,
+      "maximum": 86400
+    },
+    "notificationUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Webhook URL for session status change notifications."
+    },
+    "notificationAuthToken": {
+      "type": "string",
+      "description": "Authentication token for webhook notifications."
+    }
+  }
+}

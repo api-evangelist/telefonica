@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationServer",
+  "title": "ApplicationServer",
+  "type": "object",
+  "properties": {
+    "ipv4Address": {
+      "type": "string"
+    },
+    "ipv6Address": {
+      "type": "string"
+    }
+  }
+}

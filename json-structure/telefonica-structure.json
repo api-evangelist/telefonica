@@ -1,0 +1,82 @@
+{
+  "provider": "Telef\u00f3nica",
+  "providerId": "telefonica",
+  "kind": "json-structure",
+  "description": "Structural overview of the Telef\u00f3nica API surface; extracted from openapi/.",
+  "schemaCount": 5,
+  "operationCount": 4,
+  "schemas": [
+    {
+      "name": "CreateSessionRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "device",
+        "qosProfile",
+        "duration"
+      ]
+    },
+    {
+      "name": "SessionInfo",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Device",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ApplicationServer",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/qod/sessions",
+      "operationId": "listQodSessions",
+      "summary": "List QoD Sessions",
+      "tags": [
+        "QoD Sessions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/qod/sessions",
+      "operationId": "createQodSession",
+      "summary": "Create QoD Session",
+      "tags": [
+        "QoD Sessions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/qod/sessions/{sessionId}",
+      "operationId": "getQodSession",
+      "summary": "Get QoD Session",
+      "tags": [
+        "QoD Sessions"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/qod/sessions/{sessionId}",
+      "operationId": "deleteQodSession",
+      "summary": "Delete QoD Session",
+      "tags": [
+        "QoD Sessions"
+      ]
+    }
+  ]
+}

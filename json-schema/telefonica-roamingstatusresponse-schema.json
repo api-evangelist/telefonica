@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoamingStatusResponse",
+  "title": "RoamingStatusResponse",
+  "type": "object",
+  "properties": {
+    "roaming": {
+      "type": "boolean",
+      "description": "True if the device is currently roaming."
+    },
+    "countryCode": {
+      "type": "integer",
+      "description": "MCC (Mobile Country Code) of the network the device is connected to."
+    },
+    "countryName": {
+      "type": "array",
+      "description": "Name of the country in multiple languages.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastStatusTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the roaming status was last updated."
+    }
+  }
+}

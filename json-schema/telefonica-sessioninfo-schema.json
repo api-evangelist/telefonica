@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionInfo",
+  "title": "SessionInfo",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique session identifier."
+    },
+    "device": {
+      "$ref": "#/components/schemas/Device"
+    },
+    "qosProfile": {
+      "type": "string",
+      "description": "Assigned QoS profile."
+    },
+    "qosStatus": {
+      "type": "string",
+      "description": "Current QoS session status.",
+      "enum": [
+        "REQUESTED",
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ]
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration": {
+      "type": "integer"
+    }
+  }
+}

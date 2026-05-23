@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SimSwapCheckRequest",
+  "title": "SimSwapCheckRequest",
+  "type": "object",
+  "required": [
+    "phoneNumber"
+  ],
+  "properties": {
+    "phoneNumber": {
+      "type": "string",
+      "description": "Phone number to check in E.164 format.",
+      "pattern": "^\\+[1-9][0-9]{4,14}$",
+      "example": "+34123456789"
+    },
+    "maxAge": {
+      "type": "integer",
+      "description": "Maximum age in hours to check for a SIM swap. Default is 240 (10 days).",
+      "default": 240,
+      "minimum": 1,
+      "maximum": 2400
+    }
+  }
+}

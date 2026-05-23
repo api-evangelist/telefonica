@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KycMatchRequest",
+  "title": "KycMatchRequest",
+  "type": "object",
+  "properties": {
+    "phoneNumber": {
+      "type": "string",
+      "description": "Phone number of the user to verify in E.164 format.",
+      "pattern": "^\\+[1-9][0-9]{4,14}$"
+    },
+    "idDocument": {
+      "type": "string",
+      "description": "Government ID document number."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name to verify."
+    },
+    "givenName": {
+      "type": "string",
+      "description": "First/given name to verify."
+    },
+    "familyName": {
+      "type": "string",
+      "description": "Last/family name to verify."
+    },
+    "nameKanaHankaku": {
+      "type": "string",
+      "description": "Name in half-width katakana (for Japanese carriers)."
+    },
+    "nameKanaZenkaku": {
+      "type": "string",
+      "description": "Name in full-width katakana."
+    },
+    "middleNames": {
+      "type": "string",
+      "description": "Middle names to verify."
+    },
+    "familyNameAtBirth": {
+      "type": "string",
+      "description": "Family name at birth (maiden name)."
+    },
+    "address": {
+      "type": "string",
+      "description": "Full address string to verify."
+    },
+    "streetName": {
+      "type": "string"
+    },
+    "streetNumber": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string",
+      "description": "State/region to verify."
+    },
+    "locality": {
+      "type": "string",
+      "description": "City/locality to verify."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "houseNumberExtension": {
+      "type": "string"
+    },
+    "birthdate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth in YYYY-MM-DD format."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address to verify."
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "MALE",
+        "FEMALE",
+        "OTHER"
+      ]
+    }
+  }
+}

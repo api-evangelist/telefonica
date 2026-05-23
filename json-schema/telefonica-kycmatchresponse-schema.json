@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/KycMatchResponse",
+  "title": "KycMatchResponse",
+  "type": "object",
+  "properties": {
+    "phoneNumberMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "idDocumentMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "nameMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "givenNameMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "familyNameMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "addressMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "birthdateMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    },
+    "emailMatch": {
+      "type": "string",
+      "enum": [
+        "true",
+        "false",
+        "not_available"
+      ]
+    }
+  }
+}
