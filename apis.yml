@@ -247,6 +247,8 @@ common:
   name: Telefónica on X
   type: X
   description: Telefónica on X (formerly Twitter).
+- type: LLMsTxt
+  url: https://developers.opengateway.telefonica.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
