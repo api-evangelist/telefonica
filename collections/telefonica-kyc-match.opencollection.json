@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Know Your Customer Match API",
+    "version": "0.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KYC Match",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Match KYC Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/kyc-match",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validates provided identity data against mobile carrier records. Returns match results for each provided field without exposing the actual stored data. Supports partial matching for flexible verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

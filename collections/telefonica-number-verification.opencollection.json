@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Number Verification API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Number Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/number-verification/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verifies that the provided phone number matches the one associated with the device's active data connection at the time of the request. Uses carrier network data for verification without exposing personal data."
+        },
+        {
+          "info": {
+            "name": "Get Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/number-verification/share",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the phone number associated with the device's active data connection, enabling seamless login and number population without requiring the user to enter their phone number manually."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

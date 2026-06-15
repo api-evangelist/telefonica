@@ -1,206 +1,301 @@
 # Telefónica (telefonica)
 
-Telefónica is one of the world's leading telecommunications companies. Through its Open Gateway initiative, Telefónica exposes standardized network capabilities as APIs following CAMARA (Cloud and Edge for Mobile Access and Real-time Execution) open standards developed by the GSMA. Open Gateway APIs enable fraud prevention, identity verification, location services, and network quality management using carrier network data across Spain, Germany, Brazil, and the United Kingdom.
+Telefónica is one of the world's leading telecommunications companies, operating in Europe and Latin America. Through its Open Gateway initiative, Telefónica exposes standardized network capabilities as APIs following the CAMARA (Cloud and Edge for Mobile Access and Real-time Execution) open standards developed by the GSMA. The Open Gateway APIs enable developers and enterprises to build applications leveraging Telefónica's network infrastructure for authentication, fraud prevention, location services, quality of service, and device management. APIs are available in Spain, Germany, Brazil, and the United Kingdom through the Telefónica Open Gateway sandbox and partner program.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/telefonica/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telefonica/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telefonica/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telefonica/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Authentication, CAMARA, Fraud Prevention, Location Services, Mobile Network, Open Gateway, Telecommunications
+- Telecommunications
+- Mobile Network
+- CAMARA
+- Open Gateway
+- Authentication
+- Fraud Prevention
+- Location Services
 
 ## Timestamps
 
 - **Created:** 2025-03-01
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Telefónica Number Verification API
 
-Verify phone numbers against device SIM connections using carrier data - eliminates OTPs.
+The Number Verification API enables automatic verification that users are interacting via devices with SIM cards associated with their phone numbers, eliminating the need for credential entry or one-time passwords. Uses carrier network data to verify the mobile number associated with the device's active data connection. Available in Spain, Germany, and Brazil.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/number-verification](https://opengateway.telefonica.com/en/apis/number-verification)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/number-verification](https://opengateway.telefonica.com/en/apis/number-verification)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Authentication, Fraud Prevention, Mobile Identity, Number Verification, SIM
+- Authentication
+- Number Verification
+- Fraud Prevention
+- Mobile Identity
+- SIM
 
 #### Properties
 
 - [Documentation](https://developers.opengateway.telefonica.com/docs/numberverification)
-- [OpenAPI](openapi/telefonica-number-verification-openapi.yml)
-- [JSONSchema](json-schema/telefonica-device-schema.json)
-- [GitHub](https://github.com/Telefonica/opengateway-developers-website)
+- [OpenAPI](openapi/telefonica-number-verification-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/telefonica-device-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Git Hub](https://github.com/Telefonica/opengateway-developers-website)
 
 ### Telefónica SIM Swap API
 
-Detect SIM swap fraud attempts on mobile numbers using carrier network data.
+The SIM Swap API enables applications to detect recent SIM card swaps on a mobile number, a common indicator of account takeover fraud. Returns whether a SIM swap occurred on the mobile line and when the last swap happened. Based on CAMARA open standards. Available in Spain, Germany, Brazil, and the United Kingdom.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/sim-swap](https://opengateway.telefonica.com/en/apis/sim-swap)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/sim-swap](https://opengateway.telefonica.com/en/apis/sim-swap)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Fraud Prevention, Mobile Security, SIM Swap
+- Authentication
+- Fraud Prevention
+- SIM Swap
+- Mobile Security
 
 #### Properties
 
 - [Documentation](https://developers.opengateway.telefonica.com/docs/simswap)
-- [OpenAPI](openapi/telefonica-sim-swap-openapi.yml)
-- [GitHub](https://github.com/Telefonica/opengateway-samples-simswap)
+- [OpenAPI](openapi/telefonica-sim-swap-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/telefonica-device-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Git Hub](https://github.com/Telefonica/opengateway-samples-simswap)
 
 ### Telefónica Know Your Customer Match API
 
-Validate identity data against carrier records for KYC compliance without exposing personal data.
+The KYC Match API validates a user's contact information (name, address, phone number, email) against reliable mobile carrier data, enabling quick identity verification without sharing personal data. Used for e-commerce, financial services, and insurance KYC compliance. Available in Spain, Germany, Brazil, and the United Kingdom.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/kyc-match](https://opengateway.telefonica.com/en/apis/kyc-match)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/kyc-match](https://opengateway.telefonica.com/en/apis/kyc-match)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Financial Services, Fraud Prevention, Identity Verification, KYC
+- Authentication
+- Fraud Prevention
+- KYC
+- Identity Verification
+- Financial Services
 
 #### Properties
 
 - [Documentation](https://opengateway.telefonica.com/en/apis/kyc-match)
-- [OpenAPI](openapi/telefonica-kyc-match-openapi.yml)
+- [OpenAPI](openapi/telefonica-kyc-match-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Telefónica Location Verification API
 
-Verify device geographic location using network data (no GPS required).
+The Location Verification API verifies the geographical location of a SIM-based device, confirming whether the device is present within a requested geographic area. Uses network data rather than GPS to verify location without privacy risks. Available in Spain, Germany, and Brazil.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/location-verification](https://opengateway.telefonica.com/en/apis/location-verification)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/location-verification](https://opengateway.telefonica.com/en/apis/location-verification)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Device Location, Fraud Prevention, Location Services, Mobile Network
+- Location Services
+- Device Location
+- Fraud Prevention
+- Mobile Network
 
 #### Properties
 
 - [Documentation](https://opengateway.telefonica.com/en/apis/location-verification)
-- [OpenAPI](openapi/telefonica-location-verification-openapi.yml)
+- [OpenAPI](openapi/telefonica-location-verification-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Telefónica Quality on Demand API
 
-Guarantee network quality (bandwidth/latency) for device sessions.
+The Quality on Demand (QoD) API provides applications with precise control over mobile network connectivity quality, enabling guaranteed bandwidth and low latency for specific application flows. Used for real-time communications, streaming, industrial IoT, and gaming. Available in Spain, Germany, and Brazil.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/quality-on-demand](https://opengateway.telefonica.com/en/apis/quality-on-demand)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/quality-on-demand](https://opengateway.telefonica.com/en/apis/quality-on-demand)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Communication Quality, IoT, Mobile Network, Network Slicing, Quality of Service
+- Quality of Service
+- Mobile Network
+- IoT
+- Network Slicing
+- Communication Quality
 
 #### Properties
 
 - [Documentation](https://opengateway.telefonica.com/en/apis/quality-on-demand)
-- [OpenAPI](openapi/telefonica-quality-on-demand-openapi.yml)
-- [JSONSchema](json-schema/telefonica-qod-session-schema.json)
+- [OpenAPI](openapi/telefonica-quality-on-demand-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/telefonica-qod-session-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### Telefónica Device Roaming Status API
 
-Check whether a device is roaming and which country it's connected in.
+The Device Roaming Status API verifies the roaming status of a SIM-based device securely using carrier network data, without relying on GPS or identity theft risks. Enables fraud detection, access control, and compliance for applications requiring location awareness. Available in Spain and Brazil.
 
-**Human URL:** [https://opengateway.telefonica.com/en/apis/device-roaming-status](https://opengateway.telefonica.com/en/apis/device-roaming-status)
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/device-roaming-status](https://opengateway.telefonica.com/en/apis/device-roaming-status)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-#### Tags:
+#### Tags
 
- - Device Status, Fraud Prevention, Mobile Network, Roaming
+- Roaming
+- Device Status
+- Fraud Prevention
+- Mobile Network
 
 #### Properties
 
 - [Documentation](https://opengateway.telefonica.com/en/apis/device-roaming-status)
-- [OpenAPI](openapi/telefonica-device-roaming-openapi.yml)
+- [OpenAPI](openapi/telefonica-device-roaming-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefonica-device-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-device-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### Additional APIs
+### Telefónica Scam Signal API
 
-- **Scam Signal API** - Detect active scam calls to protect against phishing (Spain)
-- **Age Verification API** - Confirm age threshold for mobile users (UK)
-- **Line Tenure API** - How long a number has belonged to its user (Spain, Brazil, UK)
-- **Population Density Data API** - Real-time population density from network data (Spain)
+The Scam Signal API enables companies to protect their customers from phishing scams and voice fraud by detecting active scam calls in real time using Telefónica's network intelligence. Available in Spain.
 
-## Artifacts
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/scam-signal](https://opengateway.telefonica.com/en/apis/scam-signal)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-### OpenAPI Specifications
+#### Tags
 
-| File | Description |
-|---|---|
-| [telefonica-number-verification-openapi.yml](openapi/telefonica-number-verification-openapi.yml) | Number Verification - verify and retrieve phone numbers |
-| [telefonica-sim-swap-openapi.yml](openapi/telefonica-sim-swap-openapi.yml) | SIM Swap - check and retrieve swap dates |
-| [telefonica-kyc-match-openapi.yml](openapi/telefonica-kyc-match-openapi.yml) | KYC Match - validate identity data against carrier records |
-| [telefonica-location-verification-openapi.yml](openapi/telefonica-location-verification-openapi.yml) | Location Verification - verify device geographic presence |
-| [telefonica-quality-on-demand-openapi.yml](openapi/telefonica-quality-on-demand-openapi.yml) | Quality on Demand - create and manage QoS sessions |
-| [telefonica-device-roaming-openapi.yml](openapi/telefonica-device-roaming-openapi.yml) | Device Roaming Status - check roaming status |
+- Fraud Prevention
+- Scam Detection
+- Phishing
+- Voice Fraud
+- Security
 
-### JSON Schemas
+#### Properties
 
-| File | Description |
-|---|---|
-| [telefonica-device-schema.json](json-schema/telefonica-device-schema.json) | CAMARA Device identifier schema (used across all APIs) |
-| [telefonica-qod-session-schema.json](json-schema/telefonica-qod-session-schema.json) | Quality on Demand session schema |
+- [Documentation](https://opengateway.telefonica.com/en/apis/scam-signal)
+- [Postman Collection](collections/telefonica-device-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-device-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### JSON Structure
+### Telefónica Age Verification API
 
-| File | Description |
-|---|---|
-| [telefonica-device-structure.json](json-structure/telefonica-device-structure.json) | Field documentation for CAMARA Device object |
+The Age Verification API allows companies to confirm in real time whether a mobile user meets a specified age threshold, using carrier data for privacy-preserving age checks without sharing personal data. Available in the United Kingdom.
 
-### JSON-LD Context
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/age-verification](https://opengateway.telefonica.com/en/apis/age-verification)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-| File | Description |
-|---|---|
-| [telefonica-context.jsonld](json-ld/telefonica-context.jsonld) | Linked data context mapping CAMARA terms to schema.org |
+#### Tags
 
-### Examples
+- Age Verification
+- Compliance
+- E-Commerce
+- Media
+- Privacy
 
-| File | Description |
-|---|---|
-| [telefonica-number-verification-example.json](examples/telefonica-number-verification-example.json) | Number verification request/response |
-| [telefonica-sim-swap-check-example.json](examples/telefonica-sim-swap-check-example.json) | SIM swap check request/response |
-| [telefonica-location-verification-example.json](examples/telefonica-location-verification-example.json) | Location verification request/response |
-| [telefonica-kyc-match-example.json](examples/telefonica-kyc-match-example.json) | KYC match request/response |
+#### Properties
 
-### Spectral Rules
+- [Documentation](https://opengateway.telefonica.com/en/apis/age-verification)
+- [Postman Collection](collections/telefonica-device-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-device-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| File | Description |
-|---|---|
-| [telefonica-rules.yml](rules/telefonica-rules.yml) | Spectral ruleset for Telefónica CAMARA API conventions |
+### Telefónica Line Tenure API
 
-### Naftiko Capabilities
+The Line Tenure API indicates how long a mobile number has belonged to its current user, providing a fraud risk signal for identity validation and account security workflows. Available in Spain, Brazil, and the United Kingdom.
 
-| File | Description |
-|---|---|
-| [capabilities/fraud-prevention.yaml](capabilities/fraud-prevention.yaml) | Fraud prevention - Number Verification + SIM Swap + KYC + Location (6 MCP tools) |
-| [capabilities/network-quality-management.yaml](capabilities/network-quality-management.yaml) | Network quality management - QoD sessions (4 MCP tools) |
-| [capabilities/shared/number-verification.yaml](capabilities/shared/number-verification.yaml) | Shared Number Verification API definition |
-| [capabilities/shared/sim-swap.yaml](capabilities/shared/sim-swap.yaml) | Shared SIM Swap API definition |
-| [capabilities/shared/kyc-match.yaml](capabilities/shared/kyc-match.yaml) | Shared KYC Match API definition |
-| [capabilities/shared/location-verification.yaml](capabilities/shared/location-verification.yaml) | Shared Location Verification API definition |
-| [capabilities/shared/quality-on-demand.yaml](capabilities/shared/quality-on-demand.yaml) | Shared Quality on Demand API definition |
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/line-tenure](https://opengateway.telefonica.com/en/apis/line-tenure)
+- **Base URL:** `https://opengateway.telefonica.com`
 
-### Vocabulary
+#### Tags
 
-| File | Description |
-|---|---|
-| [telefonica-vocabulary.yml](vocabulary/telefonica-vocabulary.yml) | Domain vocabulary for Telefónica Open Gateway and CAMARA standards |
+- Fraud Prevention
+- Identity Verification
+- Financial Services
+- Mobile Security
+
+#### Properties
+
+- [Documentation](https://opengateway.telefonica.com/en/apis/line-tenure)
+- [Postman Collection](collections/telefonica-device-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-device-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Telefónica Population Density Data API
+
+The Population Density Data API provides dynamic real-time data on population density in a specific geographic area and time window, derived from anonymized and aggregated mobile network data. Used for transport planning, event management, and retail analytics. Available in Spain.
+
+- **Human URL:** [https://opengateway.telefonica.com/en/apis/population-density-data](https://opengateway.telefonica.com/en/apis/population-density-data)
+- **Base URL:** `https://opengateway.telefonica.com`
+
+#### Tags
+
+- Location Services
+- Population Data
+- Analytics
+- Transport
+- Smart City
+
+#### Properties
+
+- [Documentation](https://opengateway.telefonica.com/en/apis/population-density-data)
+- [Postman Collection](collections/telefonica-device-roaming.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-device-roaming.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-kyc-match.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-kyc-match.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-location-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-location-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-number-verification.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-number-verification.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-quality-on-demand.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-quality-on-demand.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/telefonica-sim-swap.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefonica-sim-swap.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
-- [Open Gateway Portal](https://opengateway.telefonica.com/en)
-- [Developer Hub](https://opengateway.telefonica.com/en/developer-hub)
-- [Technical Documentation](https://developers.opengateway.telefonica.com/docs/initiative)
-- [APIs Catalog](https://opengateway.telefonica.com/en/apis)
-- [GitHub](https://github.com/Telefonica)
-- [CAMARA Project](https://github.com/camaraproject)
-- [Developer Hub Signup](https://opengateway.telefonica.com/en/developer-hub/join)
+- [Website](https://opengateway.telefonica.com/en)
+- [Developer Portal](https://opengateway.telefonica.com/en/developer-hub)
+- [Documentation](https://developers.opengateway.telefonica.com/docs/initiative)
+- [Git Hub](https://github.com/Telefonica)
+- [Git Hub](https://github.com/camaraproject)
+- [A P Is](https://opengateway.telefonica.com/en/apis)
+- [Sign Up](https://opengateway.telefonica.com/en/developer-hub/join)
 - [LinkedIn](https://www.linkedin.com/company/telefonica)
-- [X](https://x.com/Telefonica)
+- [X (Twitter)](https://x.com/Telefonica)
+- [L L Ms Txt](https://developers.opengateway.telefonica.com/llms.txt)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

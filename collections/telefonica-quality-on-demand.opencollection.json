@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Quality on Demand API",
+    "version": "0.10.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "QoD Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List QoD Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opengateway.telefonica.com/v1/qod/sessions"
+          },
+          "docs": "Retrieve all active QoD sessions."
+        },
+        {
+          "info": {
+            "name": "Create QoD Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/qod/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Quality on Demand session, assigning a specific QoS profile to a device for the specified duration. The network guarantees the requested quality parameters for the session duration."
+        },
+        {
+          "info": {
+            "name": "Get QoD Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opengateway.telefonica.com/v1/qod/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific QoD session."
+        },
+        {
+          "info": {
+            "name": "Delete QoD Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://opengateway.telefonica.com/v1/qod/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate and delete an active QoD session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
