@@ -236,7 +236,7 @@ common:
     description: Complete list of available Telefónica Open Gateway APIs.
   - url: https://opengateway.telefonica.com/en/developer-hub/join
     name: Join Telefónica Developer Hub
-    type: SignUp
+    type: Signup
     description: Registration for the Telefónica Open Gateway Developer Hub.
   - url: https://www.linkedin.com/company/telefonica
     name: Telefónica on LinkedIn
@@ -246,7 +246,7 @@ common:
     name: Telefónica on X
     type: X
     description: Telefónica on X (formerly Twitter).
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developers.opengateway.telefonica.com/llms.txt
 maintainers:
   - FN: Kin Lane
