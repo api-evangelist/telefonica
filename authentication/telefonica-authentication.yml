@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/telefonica-device-roaming-openapi.yml, openapi/telefonica-kyc-match-openapi.yml,
+  openapi/telefonica-location-verification-openapi.yml, openapi/telefonica-number-verification-openapi.yml,
+  openapi/telefonica-quality-on-demand-openapi.yml, openapi/telefonica-sim-swap-openapi.yml
+summary:
+  types:
+  - openIdConnect
+schemes:
+- name: openIdConnect
+  type: openIdConnect
+  openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  sources:
+  - openapi/telefonica-device-roaming-openapi.yml
+  - openapi/telefonica-kyc-match-openapi.yml
+  - openapi/telefonica-location-verification-openapi.yml
+  - openapi/telefonica-number-verification-openapi.yml
+  - openapi/telefonica-quality-on-demand-openapi.yml
+  - openapi/telefonica-sim-swap-openapi.yml

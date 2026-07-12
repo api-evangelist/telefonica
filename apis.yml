@@ -210,6 +210,10 @@ apis:
       - type: Documentation
         url: https://opengateway.telefonica.com/en/apis/population-density-data
 common:
+  - type: DomainSecurity
+    url: security/telefonica-domain-security.yml
+  - type: Authentication
+    url: authentication/telefonica-authentication.yml
   - url: https://opengateway.telefonica.com/en
     name: Telefónica Open Gateway
     type: Website
@@ -248,6 +252,8 @@ common:
     description: Telefónica on X (formerly Twitter).
   - type: LlmsText
     url: https://developers.opengateway.telefonica.com/llms.txt
+  - url: https://www.telefonica.com/en/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
