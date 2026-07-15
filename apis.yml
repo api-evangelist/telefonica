@@ -210,6 +210,8 @@ apis:
       - type: Documentation
         url: https://opengateway.telefonica.com/en/apis/population-density-data
 common:
+  - type: AgenticAccess
+    url: agentic-access/telefonica-agentic-access.yml
   - type: DomainSecurity
     url: security/telefonica-domain-security.yml
   - type: Authentication
