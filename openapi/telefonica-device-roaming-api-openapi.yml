@@ -1,12 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Telefónica Device Roaming Status API
-  description: >-
-    The Device Roaming Status API verifies the roaming status of a SIM-based
-    device using carrier network data, without relying on GPS or risking
-    identity information exposure. Enables fraud detection, content
-    geo-restriction, and compliance workflows. Based on CAMARA open standards.
-    Available in Spain and Brazil.
+  title: Telefónica Status Device Roaming API
+  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
   version: 0.5.0
   contact:
     url: https://opengateway.telefonica.com/en/apis/device-roaming-status
@@ -14,24 +9,23 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - url: https://opengateway.telefonica.com/v1
-    description: Telefónica Open Gateway - Production
-  - url: https://sandbox.opengateway.telefonica.com/v1
-    description: Telefónica Open Gateway - Sandbox
+- url: https://opengateway.telefonica.com/v1
+  description: Telefónica Open Gateway - Production
+- url: https://sandbox.opengateway.telefonica.com/v1
+  description: Telefónica Open Gateway - Sandbox
+tags:
+- name: Device Roaming
 paths:
   /device-roaming/retrieve:
     post:
       operationId: getDeviceRoamingStatus
       summary: Get Device Roaming Status
-      description: >-
-        Returns the current roaming status of a device. Indicates whether
-        the device is roaming and, if available, the country code of the
-        network the device is currently connected to.
+      description: Returns the current roaming status of a device. Indicates whether the device is roaming and, if available, the country code of the network the device is currently connected to.
       tags:
-        - Device Roaming
+      - Device Roaming
       security:
-        - openIdConnect:
-            - device-roaming-status:read
+      - openIdConnect:
+        - device-roaming-status:read
       requestBody:
         required: true
         content:
@@ -39,7 +33,7 @@ paths:
             schema:
               type: object
               required:
-                - device
+              - device
               properties:
                 device:
                   $ref: '#/components/schemas/Device'
@@ -63,28 +57,7 @@ paths:
         '422':
           description: Unable to determine roaming status.
 components:
-  securitySchemes:
-    openIdConnect:
-      type: openIdConnect
-      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
   schemas:
-    Device:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          pattern: '^\+[1-9][0-9]{4,14}$'
-        networkAccessIdentifier:
-          type: string
-        ipv4Address:
-          type: object
-          properties:
-            publicAddress:
-              type: string
-            publicPort:
-              type: integer
-        ipv6Address:
-          type: string
     RoamingStatusResponse:
       type: object
       properties:
@@ -112,3 +85,24 @@ components:
           type: string
         message:
           type: string
+    Device:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9][0-9]{4,14}$
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
+        ipv6Address:
+          type: string
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
