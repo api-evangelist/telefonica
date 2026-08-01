@@ -1,0 +1,223 @@
+openapi: 3.0.3
+info:
+  title: Telefónica Quality on Demand API
+  description: >-
+    The Quality on Demand (QoD) API provides applications with precise control
+    over mobile network connectivity quality, enabling guaranteed bandwidth
+    and low-latency profiles for specific device sessions. Used for real-time
+    communications, video streaming, industrial IoT, autonomous systems, and
+    gaming. Based on CAMARA open standards. Available in Spain, Germany, and Brazil.
+  version: 0.10.0
+  contact:
+    url: https://opengateway.telefonica.com/en/apis/quality-on-demand
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Production
+  - url: https://sandbox.opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Sandbox
+paths:
+  /qod/sessions:
+    post:
+      operationId: createQodSession
+      summary: Create QoD Session
+      description: >-
+        Creates a Quality on Demand session, assigning a specific QoS profile
+        to a device for the specified duration. The network guarantees the
+        requested quality parameters for the session duration.
+      tags:
+        - QoD Sessions
+      security:
+        - openIdConnect:
+            - qod:sessions:write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+      responses:
+        '201':
+          description: QoD session created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '409':
+          description: Session already exists for this device.
+    get:
+      operationId: listQodSessions
+      summary: List QoD Sessions
+      description: Retrieve all active QoD sessions.
+      tags:
+        - QoD Sessions
+      security:
+        - openIdConnect:
+            - qod:sessions:read
+      responses:
+        '200':
+          description: List of active QoD sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SessionInfo'
+        '401':
+          description: Unauthorized.
+  /qod/sessions/{sessionId}:
+    get:
+      operationId: getQodSession
+      summary: Get QoD Session
+      description: Retrieve information about a specific QoD session.
+      tags:
+        - QoD Sessions
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      security:
+        - openIdConnect:
+            - qod:sessions:read
+      responses:
+        '200':
+          description: QoD session details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+        '404':
+          description: Session not found.
+    delete:
+      operationId: deleteQodSession
+      summary: Delete QoD Session
+      description: Terminate and delete an active QoD session.
+      tags:
+        - QoD Sessions
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      security:
+        - openIdConnect:
+            - qod:sessions:write
+      responses:
+        '204':
+          description: Session deleted successfully.
+        '404':
+          description: Session not found.
+components:
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  schemas:
+    CreateSessionRequest:
+      type: object
+      required:
+        - device
+        - qosProfile
+        - duration
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        applicationServer:
+          $ref: '#/components/schemas/ApplicationServer'
+        qosProfile:
+          type: string
+          description: QoS profile name defining connectivity quality parameters.
+          enum:
+            - QOS_E
+            - QOS_S
+            - QOS_M
+            - QOS_L
+        duration:
+          type: integer
+          description: Session duration in seconds. Maximum 86400 (24 hours).
+          minimum: 1
+          maximum: 86400
+        notificationUrl:
+          type: string
+          format: uri
+          description: Webhook URL for session status change notifications.
+        notificationAuthToken:
+          type: string
+          description: Authentication token for webhook notifications.
+    SessionInfo:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+          description: Unique session identifier.
+        device:
+          $ref: '#/components/schemas/Device'
+        qosProfile:
+          type: string
+          description: Assigned QoS profile.
+        qosStatus:
+          type: string
+          description: Current QoS session status.
+          enum:
+            - REQUESTED
+            - AVAILABLE
+            - UNAVAILABLE
+        startedAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+    Device:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: '^\+[1-9][0-9]{4,14}$'
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
+        ipv6Address:
+          type: string
+    ApplicationServer:
+      type: object
+      properties:
+        ipv4Address:
+          type: string
+        ipv6Address:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string

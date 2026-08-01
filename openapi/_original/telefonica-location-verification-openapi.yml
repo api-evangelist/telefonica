@@ -1,0 +1,166 @@
+openapi: 3.0.3
+info:
+  title: Telefónica Location Verification API
+  description: >-
+    The Location Verification API verifies the geographical location of a
+    SIM-based device, confirming whether the device is present within a
+    requested geographic area. Uses network data rather than GPS to provide
+    privacy-preserving location verification. Based on CAMARA open standards.
+    Available in Spain, Germany, and Brazil.
+  version: 0.6.0
+  contact:
+    url: https://opengateway.telefonica.com/en/apis/location-verification
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Production
+  - url: https://sandbox.opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Sandbox
+paths:
+  /location-verification/verify:
+    post:
+      operationId: verifyDeviceLocation
+      summary: Verify Device Location
+      description: >-
+        Verifies whether a device is within the specified geographic area.
+        The area can be defined as a circle or polygon. Returns a match
+        result with confidence level.
+      tags:
+        - Location Verification
+      security:
+        - openIdConnect:
+            - location-verification:verify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationVerificationRequest'
+      responses:
+        '200':
+          description: Location verification result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationVerificationResponse'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '422':
+          description: Unable to determine device location.
+components:
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  schemas:
+    LocationVerificationRequest:
+      type: object
+      required:
+        - device
+        - area
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        area:
+          $ref: '#/components/schemas/Area'
+        maxAge:
+          type: integer
+          description: Maximum age of location data in seconds.
+          minimum: 60
+    LocationVerificationResponse:
+      type: object
+      properties:
+        verificationResult:
+          type: string
+          description: Location verification result.
+          enum:
+            - "TRUE"
+            - "FALSE"
+            - "UNKNOWN"
+            - "PARTIAL"
+        matchRate:
+          type: integer
+          description: Confidence percentage (0-100) when result is PARTIAL.
+          minimum: 0
+          maximum: 100
+        lastLocationTime:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent location data used.
+    Device:
+      type: object
+      description: Device to verify location for.
+      properties:
+        phoneNumber:
+          type: string
+          pattern: '^\+[1-9][0-9]{4,14}$'
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
+        ipv6Address:
+          type: string
+    Area:
+      type: object
+      description: Geographic area to verify device presence within.
+      properties:
+        areaType:
+          type: string
+          enum:
+            - CIRCLE
+            - POLYGON
+        center:
+          type: object
+          description: Center point for circular areas.
+          properties:
+            latitude:
+              type: number
+              format: double
+              minimum: -90
+              maximum: 90
+            longitude:
+              type: number
+              format: double
+              minimum: -180
+              maximum: 180
+        radius:
+          type: number
+          format: double
+          description: Radius in meters for circular areas.
+          minimum: 2000
+        polygon:
+          type: array
+          description: Polygon vertices for polygon area type.
+          items:
+            type: object
+            properties:
+              latitude:
+                type: number
+                format: double
+              longitude:
+                type: number
+                format: double
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string

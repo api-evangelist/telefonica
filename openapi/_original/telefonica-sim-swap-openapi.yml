@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Telefónica SIM Swap API
+  description: >-
+    The SIM Swap API enables applications to check whether a SIM swap occurred
+    recently on a mobile number. SIM swap fraud is a common attack where
+    criminals take over a victim's phone number to bypass SMS-based 2FA.
+    Based on CAMARA open standards. Available in Spain, Germany, Brazil,
+    and the United Kingdom through the Telefónica Open Gateway.
+  version: 0.5.0
+  contact:
+    url: https://developers.opengateway.telefonica.com/docs/simswap
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Production
+  - url: https://sandbox.opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Sandbox
+paths:
+  /sim-swap/check:
+    post:
+      operationId: checkSimSwap
+      summary: Check SIM Swap
+      description: >-
+        Checks whether a SIM swap occurred on the specified phone number
+        within a given time period. Returns a boolean indicating if a recent
+        SIM swap was detected.
+      tags:
+        - SIM Swap
+      security:
+        - openIdConnect:
+            - sim-swap:read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimSwapCheckRequest'
+      responses:
+        '200':
+          description: SIM swap check result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimSwapCheckResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unable to determine SIM swap status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /sim-swap/retrieve-date:
+    post:
+      operationId: getSimSwapDate
+      summary: Get SIM Swap Date
+      description: >-
+        Returns the date of the most recent SIM swap for the specified phone
+        number. Returns null if no SIM swap has occurred or if no information
+        is available.
+      tags:
+        - SIM Swap
+      security:
+        - openIdConnect:
+            - sim-swap:read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phoneNumber
+              properties:
+                phoneNumber:
+                  type: string
+                  description: E.164 phone number to check.
+                  pattern: '^\+[1-9][0-9]{4,14}$'
+      responses:
+        '200':
+          description: Date of the most recent SIM swap.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  latestSimChange:
+                    type: string
+                    format: date-time
+                    description: >-
+                      Timestamp of the most recent SIM swap. Null if no
+                      swap occurred or data is unavailable.
+        '401':
+          description: Unauthorized.
+        '422':
+          description: Unable to determine SIM swap date.
+components:
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  schemas:
+    SimSwapCheckRequest:
+      type: object
+      required:
+        - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number to check in E.164 format.
+          pattern: '^\+[1-9][0-9]{4,14}$'
+          example: "+34123456789"
+        maxAge:
+          type: integer
+          description: Maximum age in hours to check for a SIM swap. Default is 240 (10 days).
+          default: 240
+          minimum: 1
+          maximum: 2400
+    SimSwapCheckResponse:
+      type: object
+      properties:
+        swapped:
+          type: boolean
+          description: True if a SIM swap was detected within the specified maxAge period.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string

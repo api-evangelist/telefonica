@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  title: Telefónica Number Verification API
+  description: >-
+    The Number Verification API enables automatic verification that users
+    interact via devices with SIM cards associated with their phone numbers.
+    Based on the CAMARA open standard developed by the GSMA Open Gateway
+    initiative. Eliminates the need for credential entry or OTPs by using
+    carrier network data to confirm the mobile number actively connected
+    to the network matches the claimed number.
+  version: 0.5.0
+  contact:
+    url: https://developers.opengateway.telefonica.com/docs/numberverification
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  x-camara-commonalities: 0.4.0
+servers:
+  - url: https://opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Production
+  - url: https://sandbox.opengateway.telefonica.com/v1
+    description: Telefónica Open Gateway - Sandbox
+paths:
+  /number-verification/verify:
+    post:
+      operationId: verifyPhoneNumber
+      summary: Verify Phone Number
+      description: >-
+        Verifies that the provided phone number matches the one associated with
+        the device's active data connection at the time of the request. Uses
+        carrier network data for verification without exposing personal data.
+      tags:
+        - Number Verification
+      security:
+        - openIdConnect:
+            - number-verification:verify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumberVerificationRequest'
+      responses:
+        '200':
+          description: Number verification result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumberVerificationResponse'
+        '400':
+          description: Invalid request parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - insufficient permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable entity - unable to determine verification.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /number-verification/share:
+    post:
+      operationId: getPhoneNumber
+      summary: Get Phone Number
+      description: >-
+        Returns the phone number associated with the device's active data
+        connection, enabling seamless login and number population without
+        requiring the user to enter their phone number manually.
+      tags:
+        - Number Verification
+      security:
+        - openIdConnect:
+            - number-verification:read
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device:
+                  $ref: '#/components/schemas/Device'
+      responses:
+        '200':
+          description: Phone number associated with the device connection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  phoneNumber:
+                    type: string
+                    description: The E.164 formatted phone number associated with the device.
+                    example: "+34123456789"
+        '401':
+          description: Unauthorized.
+        '422':
+          description: Unable to determine phone number.
+components:
+  securitySchemes:
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://opengateway.telefonica.com/.well-known/openid-configuration
+  schemas:
+    NumberVerificationRequest:
+      type: object
+      required:
+        - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number to verify in E.164 format.
+          pattern: '^\+[1-9][0-9]{4,14}$'
+          example: "+34123456789"
+        device:
+          $ref: '#/components/schemas/Device'
+    NumberVerificationResponse:
+      type: object
+      properties:
+        devicePhoneNumberVerified:
+          type: boolean
+          description: >-
+            True if the provided phone number matches the one associated with
+            the device's current network connection.
+    Device:
+      type: object
+      description: Identifies the device for which the verification is requested.
+      properties:
+        phoneNumber:
+          type: string
+          description: E.164 formatted phone number of the device.
+        networkAccessIdentifier:
+          type: string
+          description: Network Access Identifier of the device.
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
+        ipv6Address:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code.
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error description.

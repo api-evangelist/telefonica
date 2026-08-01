@@ -1,0 +1,24 @@
+{
+  "provider": "telefonica",
+  "sources": [
+    "telefonica-device-roaming-api-openapi.yml",
+    "telefonica-kyc-match-api-openapi.yml",
+    "telefonica-location-verification-api-openapi.yml",
+    "telefonica-number-verification-api-openapi.yml",
+    "telefonica-qod-sessions-api-openapi.yml",
+    "telefonica-sim-swap-api-openapi.yml"
+  ],
+  "outputs": [
+    "telefonica-device-roaming-api-openapi.yml",
+    "telefonica-kyc-match-api-openapi.yml",
+    "telefonica-location-verification-api-openapi.yml",
+    "telefonica-number-verification-api-openapi.yml",
+    "telefonica-qod-sessions-api-openapi.yml",
+    "telefonica-sim-swap-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
