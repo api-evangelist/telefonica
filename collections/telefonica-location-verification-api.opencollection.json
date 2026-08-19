@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Status Device Roaming Location Verification API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Location Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify Device Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/location-verification/verify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verifies whether a device is within the specified geographic area. The area can be defined as a circle or polygon. Returns a match result with confidence level."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

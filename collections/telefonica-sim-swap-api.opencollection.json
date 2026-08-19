@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Status Device Roaming SIM Swap API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SIM Swap",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check SIM Swap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/sim-swap/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Checks whether a SIM swap occurred on the specified phone number within a given time period. Returns a boolean indicating if a recent SIM swap was detected."
+        },
+        {
+          "info": {
+            "name": "Get SIM Swap Date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/sim-swap/retrieve-date",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the date of the most recent SIM swap for the specified phone number. Returns null if no SIM swap has occurred or if no information is available."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefónica Status Device Roaming API",
+    "version": "0.5.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Roaming",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Device Roaming Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://opengateway.telefonica.com/v1/device-roaming/retrieve",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the current roaming status of a device. Indicates whether the device is roaming and, if available, the country code of the network the device is currently connected to."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,627 @@
+{
+  "item": [
+    {
+      "id": "4fc1a515-a02f-40e3-abbe-8442f09740a1",
+      "name": "QoD Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82e4894a-403f-4548-a043-1bc36bbfcd47",
+          "name": "Create QoD Session",
+          "request": {
+            "name": "Create QoD Session",
+            "description": {
+              "content": "Creates a Quality on Demand session, assigning a specific QoS profile to a device for the specified duration. The network guarantees the requested quality parameters for the session duration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qod",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87281604-4e47-49e1-a574-2bd366e0afa9",
+              "name": "QoD session created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"02e8af94-1071-27e0-3f3b-63985ec6f7ed\",\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"string\",\n  \"qosStatus\": \"AVAILABLE\",\n  \"startedAt\": \"1977-06-23T01:56:18.954Z\",\n  \"expiresAt\": \"1946-12-18T21:34:57.457Z\",\n  \"duration\": 4936\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3edeaf2d-1804-43b6-bdee-22339c5d8685",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6028,\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8c683b9-8790-4dcf-9c35-3862c9fa031d",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8696264-9ea8-4099-bed4-fdf5fc5578c2",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a457e91-30d9-4d62-b7b8-806d4972269f",
+              "name": "Session already exists for this device.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"applicationServer\": {\n    \"ipv4Address\": \"<string>\",\n    \"ipv6Address\": \"<string>\"\n  },\n  \"notificationUrl\": \"<uri>\",\n  \"notificationAuthToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38087b63-f58e-4355-9f4c-9c8ff7282f32",
+          "name": "List QoD Sessions",
+          "request": {
+            "name": "List QoD Sessions",
+            "description": {
+              "content": "Retrieve all active QoD sessions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qod",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "8020d3c8-63b4-4fe4-82cb-17e6aad5556f",
+              "name": "List of active QoD sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sessionId\": \"bbac0679-77e7-3a1e-f06f-815afc7e2640\",\n    \"device\": {\n      \"phoneNumber\": \"<string>\",\n      \"networkAccessIdentifier\": \"<string>\",\n      \"ipv4Address\": {\n        \"publicAddress\": \"<string>\",\n        \"publicPort\": \"<integer>\"\n      },\n      \"ipv6Address\": \"<string>\"\n    },\n    \"qosProfile\": \"string\",\n    \"qosStatus\": \"REQUESTED\",\n    \"startedAt\": \"1981-08-31T19:02:51.461Z\",\n    \"expiresAt\": \"1992-10-28T01:25:57.431Z\",\n    \"duration\": 4901\n  },\n  {\n    \"sessionId\": \"2e50529e-b153-5894-0ea3-39db418e1ff4\",\n    \"device\": {\n      \"phoneNumber\": \"<string>\",\n      \"networkAccessIdentifier\": \"<string>\",\n      \"ipv4Address\": {\n        \"publicAddress\": \"<string>\",\n        \"publicPort\": \"<integer>\"\n      },\n      \"ipv6Address\": \"<string>\"\n    },\n    \"qosProfile\": \"string\",\n    \"qosStatus\": \"REQUESTED\",\n    \"startedAt\": \"1947-05-31T11:43:58.340Z\",\n    \"expiresAt\": \"1954-07-06T07:22:48.351Z\",\n    \"duration\": 89\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbf6635a-f5a5-45dc-b27e-7faac2dccf0f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "974f8255-447a-4cad-90b1-5af36b3a1844",
+          "name": "Get QoD Session",
+          "request": {
+            "name": "Get QoD Session",
+            "description": {
+              "content": "Retrieve information about a specific QoD session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qod",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "6c985880-9b54-474c-b748-bd8508ed0adc",
+              "name": "QoD session details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"02e8af94-1071-27e0-3f3b-63985ec6f7ed\",\n  \"device\": {\n    \"phoneNumber\": \"<string>\",\n    \"networkAccessIdentifier\": \"<string>\",\n    \"ipv4Address\": {\n      \"publicAddress\": \"<string>\",\n      \"publicPort\": \"<integer>\"\n    },\n    \"ipv6Address\": \"<string>\"\n  },\n  \"qosProfile\": \"string\",\n  \"qosStatus\": \"AVAILABLE\",\n  \"startedAt\": \"1977-06-23T01:56:18.954Z\",\n  \"expiresAt\": \"1946-12-18T21:34:57.457Z\",\n  \"duration\": 4936\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83b904fe-dfca-482c-b653-61718e556ead",
+              "name": "Session not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d668bfd6-a1ed-4f70-9abc-ee76a3058a8a",
+          "name": "Delete QoD Session",
+          "request": {
+            "name": "Delete QoD Session",
+            "description": {
+              "content": "Terminate and delete an active QoD session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "qod",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "7cb32215-8788-46e3-a4b4-49feb411cf26",
+              "name": "Session deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0810dcb4-d7a8-4a64-9bf0-edc73d6238b5",
+              "name": "Session not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "qod",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://opengateway.telefonica.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d4e8dd20-2dcb-45fd-b2d3-226b2b3cb7e6",
+    "name": "Telefónica Status Device Roaming QoD Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "4c9115ea-bf50-4eaa-ab74-81b7c91e54d1",
+      "name": "KYC Match",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86033837-63b7-4504-aa47-b3964cd0ee34",
+          "name": "Match KYC Data",
+          "request": {
+            "name": "Match KYC Data",
+            "description": {
+              "content": "Validates provided identity data against mobile carrier records. Returns match results for each provided field without exposing the actual stored data. Supports partial matching for flexible verification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kyc-match"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df13dcf2-5556-489b-91e3-1d329a8e7fbb",
+              "name": "KYC match results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kyc-match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"phoneNumberMatch\": \"not_available\",\n  \"idDocumentMatch\": \"not_available\",\n  \"nameMatch\": \"not_available\",\n  \"givenNameMatch\": \"true\",\n  \"familyNameMatch\": \"not_available\",\n  \"addressMatch\": \"true\",\n  \"birthdateMatch\": \"false\",\n  \"emailMatch\": \"false\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c51fac4c-1d52-4b7e-946f-db9442b60bb5",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kyc-match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2738,\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a71ba220-dce0-47ba-81d8-7b880588a343",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kyc-match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac5993a8-3519-4eaa-9eff-5944e7c269b5",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kyc-match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "14a8feca-e3d0-408d-87d6-21bd7907ee1a",
+              "name": "Unable to process match request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kyc-match"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"phoneNumber\": \"<string>\",\n  \"idDocument\": \"<string>\",\n  \"name\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"familyName\": \"<string>\",\n  \"nameKanaHankaku\": \"<string>\",\n  \"nameKanaZenkaku\": \"<string>\",\n  \"middleNames\": \"<string>\",\n  \"familyNameAtBirth\": \"<string>\",\n  \"address\": \"<string>\",\n  \"streetName\": \"<string>\",\n  \"streetNumber\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locality\": \"<string>\",\n  \"country\": \"<string>\",\n  \"houseNumberExtension\": \"<string>\",\n  \"birthdate\": \"<date>\",\n  \"email\": \"<email>\",\n  \"gender\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://opengateway.telefonica.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d2a29bd3-51d3-4496-a48b-cc2c3f3f8e3e",
+    "name": "Telefónica Status Device Roaming KYC Match API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.",
+      "type": "text/plain"
+    }
+  }
+}
