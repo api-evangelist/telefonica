@@ -80,6 +80,11 @@ apis:
   tags:
   - Fraud Prevention
   - Identity Verification
+  - Financial-Services
+  - Mobile Security
+  tags_raw:
+  - Fraud Prevention
+  - Identity Verification
   - Financial Services
   - Mobile Security
   properties:
