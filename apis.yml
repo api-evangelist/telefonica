@@ -301,6 +301,9 @@ apis:
   - type: Documentation
     url: https://opengateway.telefonica.com/en/apis/device-roaming-status
 common:
+  - type: CapabilityMap
+    url: capabilities/telefonica-capability-edges.yml
+    name: Telefónica Business Capability Map
   - type: AgenticAccess
     url: agentic-access/telefonica-agentic-access.yml
   - type: DomainSecurity
