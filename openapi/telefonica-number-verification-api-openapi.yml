@@ -1,13 +1,14 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefónica Status Device Roaming Number Verification API
-  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
+  title: Telefónica Number Verification API
+  description: The Number Verification API enables automatic verification that users interact via devices with SIM cards associated with their phone numbers. Based on the CAMARA open standard developed by the GSMA Open Gateway initiative. Eliminates the need for credential entry or OTPs by using carrier network data to confirm the mobile number actively connected to the network matches the claimed number.
   version: 0.5.0
   contact:
-    url: https://opengateway.telefonica.com/en/apis/device-roaming-status
+    url: https://developers.opengateway.telefonica.com/docs/numberverification
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
+  x-camara-commonalities: 0.4.0
 servers:
 - url: https://opengateway.telefonica.com/v1
   description: Telefónica Open Gateway - Production
@@ -100,36 +101,6 @@ paths:
           description: Unable to determine phone number.
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: HTTP status code.
-        code:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Human-readable error description.
-    NumberVerificationResponse:
-      type: object
-      properties:
-        devicePhoneNumberVerified:
-          type: boolean
-          description: True if the provided phone number matches the one associated with the device's current network connection.
-    NumberVerificationRequest:
-      type: object
-      required:
-      - phoneNumber
-      properties:
-        phoneNumber:
-          type: string
-          description: Phone number to verify in E.164 format.
-          pattern: ^\+[1-9][0-9]{4,14}$
-          example: '+34123456789'
-        device:
-          $ref: '#/components/schemas/Device'
     Device:
       type: object
       description: Identifies the device for which the verification is requested.
@@ -149,6 +120,36 @@ components:
               type: integer
         ipv6Address:
           type: string
+    NumberVerificationResponse:
+      type: object
+      properties:
+        devicePhoneNumberVerified:
+          type: boolean
+          description: True if the provided phone number matches the one associated with the device's current network connection.
+    NumberVerificationRequest:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number to verify in E.164 format.
+          pattern: ^\+[1-9][0-9]{4,14}$
+          example: '+34123456789'
+        device:
+          $ref: '#/components/schemas/Device'
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code.
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error description.
   securitySchemes:
     openIdConnect:
       type: openIdConnect

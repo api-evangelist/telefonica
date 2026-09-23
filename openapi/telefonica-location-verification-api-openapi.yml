@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefónica Status Device Roaming Location Verification API
-  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
-  version: 0.5.0
+  title: Telefónica Location Verification API
+  description: The Location Verification API verifies the geographical location of a SIM-based device, confirming whether the device is present within a requested geographic area. Uses network data rather than GPS to provide privacy-preserving location verification. Based on CAMARA open standards. Available in Spain, Germany, and Brazil.
+  version: 0.6.0
   contact:
-    url: https://opengateway.telefonica.com/en/apis/device-roaming-status
+    url: https://opengateway.telefonica.com/en/apis/location-verification
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -53,6 +53,26 @@ paths:
           description: Unable to determine device location.
 components:
   schemas:
+    LocationVerificationResponse:
+      type: object
+      properties:
+        verificationResult:
+          type: string
+          description: Location verification result.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+          - UNKNOWN
+          - PARTIAL
+        matchRate:
+          type: integer
+          description: Confidence percentage (0-100) when result is PARTIAL.
+          minimum: 0
+          maximum: 100
+        lastLocationTime:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent location data used.
     Area:
       type: object
       description: Geographic area to verify device presence within.
@@ -93,6 +113,29 @@ components:
               longitude:
                 type: number
                 format: double
+    LocationVerificationRequest:
+      type: object
+      required:
+      - device
+      - area
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        area:
+          $ref: '#/components/schemas/Area'
+        maxAge:
+          type: integer
+          description: Maximum age of location data in seconds.
+          minimum: 60
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
     Device:
       type: object
       description: Device to verify location for.
@@ -111,49 +154,6 @@ components:
               type: integer
         ipv6Address:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-    LocationVerificationRequest:
-      type: object
-      required:
-      - device
-      - area
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-        area:
-          $ref: '#/components/schemas/Area'
-        maxAge:
-          type: integer
-          description: Maximum age of location data in seconds.
-          minimum: 60
-    LocationVerificationResponse:
-      type: object
-      properties:
-        verificationResult:
-          type: string
-          description: Location verification result.
-          enum:
-          - 'TRUE'
-          - 'FALSE'
-          - UNKNOWN
-          - PARTIAL
-        matchRate:
-          type: integer
-          description: Confidence percentage (0-100) when result is PARTIAL.
-          minimum: 0
-          maximum: 100
-        lastLocationTime:
-          type: string
-          format: date-time
-          description: Timestamp of the most recent location data used.
   securitySchemes:
     openIdConnect:
       type: openIdConnect

@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefónica Status Device Roaming QoD Sessions API
-  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
-  version: 0.5.0
+  title: Telefónica Quality on Demand QoD Sessions API
+  description: The Quality on Demand (QoD) API provides applications with precise control over mobile network connectivity quality, enabling guaranteed bandwidth and low-latency profiles for specific device sessions. Used for real-time communications, video streaming, industrial IoT, autonomous systems, and gaming. Based on CAMARA open standards. Available in Spain, Germany, and Brazil.
+  version: 0.10.0
   contact:
-    url: https://opengateway.telefonica.com/en/apis/device-roaming-status
+    url: https://opengateway.telefonica.com/en/apis/quality-on-demand
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -120,23 +120,37 @@ paths:
           description: Session not found.
 components:
   schemas:
-    Device:
+    CreateSessionRequest:
       type: object
+      required:
+      - device
+      - qosProfile
+      - duration
       properties:
-        phoneNumber:
+        device:
+          $ref: '#/components/schemas/Device'
+        applicationServer:
+          $ref: '#/components/schemas/ApplicationServer'
+        qosProfile:
           type: string
-          pattern: ^\+[1-9][0-9]{4,14}$
-        networkAccessIdentifier:
+          description: QoS profile name defining connectivity quality parameters.
+          enum:
+          - QOS_E
+          - QOS_S
+          - QOS_M
+          - QOS_L
+        duration:
+          type: integer
+          description: Session duration in seconds. Maximum 86400 (24 hours).
+          minimum: 1
+          maximum: 86400
+        notificationUrl:
           type: string
-        ipv4Address:
-          type: object
-          properties:
-            publicAddress:
-              type: string
-            publicPort:
-              type: integer
-        ipv6Address:
+          format: uri
+          description: Webhook URL for session status change notifications.
+        notificationAuthToken:
           type: string
+          description: Authentication token for webhook notifications.
     SessionInfo:
       type: object
       properties:
@@ -173,42 +187,28 @@ components:
           type: string
         message:
           type: string
-    CreateSessionRequest:
-      type: object
-      required:
-      - device
-      - qosProfile
-      - duration
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-        applicationServer:
-          $ref: '#/components/schemas/ApplicationServer'
-        qosProfile:
-          type: string
-          description: QoS profile name defining connectivity quality parameters.
-          enum:
-          - QOS_E
-          - QOS_S
-          - QOS_M
-          - QOS_L
-        duration:
-          type: integer
-          description: Session duration in seconds. Maximum 86400 (24 hours).
-          minimum: 1
-          maximum: 86400
-        notificationUrl:
-          type: string
-          format: uri
-          description: Webhook URL for session status change notifications.
-        notificationAuthToken:
-          type: string
-          description: Authentication token for webhook notifications.
     ApplicationServer:
       type: object
       properties:
         ipv4Address:
           type: string
+        ipv6Address:
+          type: string
+    Device:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9][0-9]{4,14}$
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
         ipv6Address:
           type: string
   securitySchemes:

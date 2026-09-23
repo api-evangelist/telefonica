@@ -1,12 +1,12 @@
 {
   "provider": "telefonica",
   "sources": [
-    "telefonica-device-roaming-api-openapi.yml",
-    "telefonica-kyc-match-api-openapi.yml",
-    "telefonica-location-verification-api-openapi.yml",
-    "telefonica-number-verification-api-openapi.yml",
-    "telefonica-qod-sessions-api-openapi.yml",
-    "telefonica-sim-swap-api-openapi.yml"
+    "_original/telefonica-device-roaming-openapi.yml",
+    "_original/telefonica-kyc-match-openapi.yml",
+    "_original/telefonica-location-verification-openapi.yml",
+    "_original/telefonica-number-verification-openapi.yml",
+    "_original/telefonica-quality-on-demand-openapi.yml",
+    "_original/telefonica-sim-swap-openapi.yml"
   ],
   "outputs": [
     "telefonica-device-roaming-api-openapi.yml",
@@ -19,6 +19,28 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (6 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "telefonica-device-roaming-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-device-roaming-openapi.yml: declared missing tag: Device Roaming",
+    "telefonica-kyc-match-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-kyc-match-openapi.yml: declared missing tag: KYC Match",
+    "telefonica-location-verification-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-location-verification-openapi.yml: declared missing tag: Location Verification",
+    "telefonica-number-verification-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-number-verification-openapi.yml: declared missing tag: Number Verification",
+    "telefonica-quality-on-demand-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-quality-on-demand-openapi.yml: declared missing tag: QoD Sessions",
+    "telefonica-sim-swap-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefonica-sim-swap-openapi.yml: declared missing tag: SIM Swap",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "telefonica-device-roaming-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefonica-kyc-match-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefonica-location-verification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefonica-number-verification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefonica-qod-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefonica-sim-swap-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

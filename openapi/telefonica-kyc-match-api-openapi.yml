@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefónica Status Device Roaming KYC Match API
-  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
-  version: 0.5.0
+  title: Telefónica Know Your Customer Match KYC Match API
+  description: The KYC Match API validates a user's contact information against reliable mobile carrier data, enabling quick identity verification without sharing sensitive personal data. Returns match/no-match results for name, address, phone number, email, and date of birth fields. Used for KYC compliance, e-commerce fraud prevention, and financial services identity verification. Based on CAMARA open standards. Available in Spain, Germany, Brazil, and UK.
+  version: 0.3.0
   contact:
-    url: https://opengateway.telefonica.com/en/apis/device-roaming-status
+    url: https://opengateway.telefonica.com/en/apis/kyc-match
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -62,57 +62,6 @@ components:
           type: string
         message:
           type: string
-    KycMatchResponse:
-      type: object
-      properties:
-        phoneNumberMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        idDocumentMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        nameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        givenNameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        familyNameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        addressMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        birthdateMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        emailMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
     KycMatchRequest:
       type: object
       properties:
@@ -178,6 +127,57 @@ components:
           - MALE
           - FEMALE
           - OTHER
+    KycMatchResponse:
+      type: object
+      properties:
+        phoneNumberMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        idDocumentMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        nameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        givenNameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        familyNameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        addressMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        birthdateMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        emailMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
   securitySchemes:
     openIdConnect:
       type: openIdConnect

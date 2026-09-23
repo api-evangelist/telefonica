@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefónica Status Device Roaming SIM Swap API
-  description: The Device Roaming Status API verifies the roaming status of a SIM-based device using carrier network data, without relying on GPS or risking identity information exposure. Enables fraud detection, content geo-restriction, and compliance workflows. Based on CAMARA open standards. Available in Spain and Brazil.
+  title: Telefónica SIM Swap API
+  description: The SIM Swap API enables applications to check whether a SIM swap occurred recently on a mobile number. SIM swap fraud is a common attack where criminals take over a victim's phone number to bypass SMS-based 2FA. Based on CAMARA open standards. Available in Spain, Germany, Brazil, and the United Kingdom through the Telefónica Open Gateway.
   version: 0.5.0
   contact:
-    url: https://opengateway.telefonica.com/en/apis/device-roaming-status
+    url: https://developers.opengateway.telefonica.com/docs/simswap
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -104,15 +104,6 @@ paths:
           description: Unable to determine SIM swap date.
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
     SimSwapCheckRequest:
       type: object
       required:
@@ -135,6 +126,15 @@ components:
         swapped:
           type: boolean
           description: True if a SIM swap was detected within the specified maxAge period.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
   securitySchemes:
     openIdConnect:
       type: openIdConnect
