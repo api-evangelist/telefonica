@@ -10,15 +10,20 @@ description: >-
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - telefonica/opengateway-developers-website
+    - telefonica/opengateway-samples-simswap
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -54,7 +59,6 @@ apis:
     by detecting active scam calls in real time using Telefónica's network intelligence. Available in
     Spain.
   humanURL: https://opengateway.telefonica.com/en/apis/scam-signal
-  baseURL: https://opengateway.telefonica.com
   tags:
   - Fraud Prevention
   - Scam Detection
@@ -71,7 +75,6 @@ apis:
     age threshold, using carrier data for privacy-preserving age checks without sharing personal data.
     Available in the United Kingdom.
   humanURL: https://opengateway.telefonica.com/en/apis/age-verification
-  baseURL: https://opengateway.telefonica.com
   tags:
   - Age Verification
   - Compliance
@@ -88,17 +91,17 @@ apis:
     a fraud risk signal for identity validation and account security workflows. Available in Spain, Brazil,
     and the United Kingdom.
   humanURL: https://opengateway.telefonica.com/en/apis/line-tenure
-  baseURL: https://opengateway.telefonica.com
   tags:
   - Fraud Prevention
   - Identity Verification
-  - Financial-Services
+  - Financial Services
   - Mobile Security
   tags_raw:
   - Fraud Prevention
   - Identity Verification
   - Financial Services
   - Mobile Security
+  - Financial-Services
   properties:
   - type: Documentation
     url: https://opengateway.telefonica.com/en/apis/line-tenure
@@ -109,7 +112,6 @@ apis:
     geographic area and time window, derived from anonymized and aggregated mobile network data. Used
     for transport planning, event management, and retail analytics. Available in Spain.
   humanURL: https://opengateway.telefonica.com/en/apis/population-density-data
-  baseURL: https://opengateway.telefonica.com
   tags:
   - Location Services
   - Population Data
@@ -123,7 +125,7 @@ apis:
   name: Telefónica Device Roaming API
   description: The Device Roaming API from Telefónica — 1 operation(s) for device roaming.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - Device Roaming
   properties:
@@ -153,7 +155,7 @@ apis:
   name: Telefónica KYC Match API
   description: The KYC Match API from Telefónica — 1 operation(s) for kyc match.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - KYC Match
   properties:
@@ -184,7 +186,7 @@ apis:
   description: >-
     The Location Verification API from Telefónica — 1 operation(s) for location verification.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - Location Verification
   properties:
@@ -214,7 +216,7 @@ apis:
   name: Telefónica Number Verification API
   description: The Number Verification API from Telefónica — 2 operation(s) for number verification.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - Number Verification
   properties:
@@ -244,7 +246,7 @@ apis:
   name: Telefónica QoD Sessions API
   description: The QoD Sessions API from Telefónica — 2 operation(s) for qod sessions.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - QoD Sessions
   properties:
@@ -274,7 +276,7 @@ apis:
   name: Telefónica SIM Swap API
   description: The SIM Swap API from Telefónica — 2 operation(s) for sim swap.
   humanURL: https://opengateway.telefonica.com/en/apis/number-verification
-  baseURL: https://opengateway.telefonica.com
+  baseURL: https://sandbox.opengateway.telefonica.com/v1
   tags:
   - SIM Swap
   properties:

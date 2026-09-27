@@ -151,6 +151,13 @@ components:
         notificationAuthToken:
           type: string
           description: Authentication token for webhook notifications.
+    ApplicationServer:
+      type: object
+      properties:
+        ipv4Address:
+          type: string
+        ipv6Address:
+          type: string
     SessionInfo:
       type: object
       properties:
@@ -178,22 +185,6 @@ components:
           format: date-time
         duration:
           type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-    ApplicationServer:
-      type: object
-      properties:
-        ipv4Address:
-          type: string
-        ipv6Address:
-          type: string
     Device:
       type: object
       properties:
@@ -210,6 +201,15 @@ components:
             publicPort:
               type: integer
         ipv6Address:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
           type: string
   securitySchemes:
     openIdConnect:

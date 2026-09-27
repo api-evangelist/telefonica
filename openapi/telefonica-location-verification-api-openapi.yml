@@ -53,26 +53,6 @@ paths:
           description: Unable to determine device location.
 components:
   schemas:
-    LocationVerificationResponse:
-      type: object
-      properties:
-        verificationResult:
-          type: string
-          description: Location verification result.
-          enum:
-          - 'TRUE'
-          - 'FALSE'
-          - UNKNOWN
-          - PARTIAL
-        matchRate:
-          type: integer
-          description: Confidence percentage (0-100) when result is PARTIAL.
-          minimum: 0
-          maximum: 100
-        lastLocationTime:
-          type: string
-          format: date-time
-          description: Timestamp of the most recent location data used.
     Area:
       type: object
       description: Geographic area to verify device presence within.
@@ -113,29 +93,6 @@ components:
               longitude:
                 type: number
                 format: double
-    LocationVerificationRequest:
-      type: object
-      required:
-      - device
-      - area
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-        area:
-          $ref: '#/components/schemas/Area'
-        maxAge:
-          type: integer
-          description: Maximum age of location data in seconds.
-          minimum: 60
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
     Device:
       type: object
       description: Device to verify location for.
@@ -153,6 +110,49 @@ components:
             publicPort:
               type: integer
         ipv6Address:
+          type: string
+    LocationVerificationRequest:
+      type: object
+      required:
+      - device
+      - area
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        area:
+          $ref: '#/components/schemas/Area'
+        maxAge:
+          type: integer
+          description: Maximum age of location data in seconds.
+          minimum: 60
+    LocationVerificationResponse:
+      type: object
+      properties:
+        verificationResult:
+          type: string
+          description: Location verification result.
+          enum:
+          - 'TRUE'
+          - 'FALSE'
+          - UNKNOWN
+          - PARTIAL
+        matchRate:
+          type: integer
+          description: Confidence percentage (0-100) when result is PARTIAL.
+          minimum: 0
+          maximum: 100
+        lastLocationTime:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent location data used.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
           type: string
   securitySchemes:
     openIdConnect:

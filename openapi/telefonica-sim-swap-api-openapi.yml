@@ -104,6 +104,21 @@ paths:
           description: Unable to determine SIM swap date.
 components:
   schemas:
+    SimSwapCheckResponse:
+      type: object
+      properties:
+        swapped:
+          type: boolean
+          description: True if a SIM swap was detected within the specified maxAge period.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
     SimSwapCheckRequest:
       type: object
       required:
@@ -120,21 +135,6 @@ components:
           default: 240
           minimum: 1
           maximum: 2400
-    SimSwapCheckResponse:
-      type: object
-      properties:
-        swapped:
-          type: boolean
-          description: True if a SIM swap was detected within the specified maxAge period.
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
   securitySchemes:
     openIdConnect:
       type: openIdConnect

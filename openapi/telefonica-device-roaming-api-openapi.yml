@@ -58,6 +58,15 @@ paths:
           description: Unable to determine roaming status.
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
     RoamingStatusResponse:
       type: object
       properties:
@@ -76,15 +85,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the roaming status was last updated.
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
     Device:
       type: object
       properties:

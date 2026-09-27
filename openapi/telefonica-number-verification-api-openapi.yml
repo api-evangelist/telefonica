@@ -101,6 +101,36 @@ paths:
           description: Unable to determine phone number.
 components:
   schemas:
+    NumberVerificationResponse:
+      type: object
+      properties:
+        devicePhoneNumberVerified:
+          type: boolean
+          description: True if the provided phone number matches the one associated with the device's current network connection.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code.
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Human-readable error description.
+    NumberVerificationRequest:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number to verify in E.164 format.
+          pattern: ^\+[1-9][0-9]{4,14}$
+          example: '+34123456789'
+        device:
+          $ref: '#/components/schemas/Device'
     Device:
       type: object
       description: Identifies the device for which the verification is requested.
@@ -120,36 +150,6 @@ components:
               type: integer
         ipv6Address:
           type: string
-    NumberVerificationResponse:
-      type: object
-      properties:
-        devicePhoneNumberVerified:
-          type: boolean
-          description: True if the provided phone number matches the one associated with the device's current network connection.
-    NumberVerificationRequest:
-      type: object
-      required:
-      - phoneNumber
-      properties:
-        phoneNumber:
-          type: string
-          description: Phone number to verify in E.164 format.
-          pattern: ^\+[1-9][0-9]{4,14}$
-          example: '+34123456789'
-        device:
-          $ref: '#/components/schemas/Device'
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: HTTP status code.
-        code:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Human-readable error description.
   securitySchemes:
     openIdConnect:
       type: openIdConnect
