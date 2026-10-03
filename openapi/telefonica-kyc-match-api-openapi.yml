@@ -53,15 +53,6 @@ paths:
           description: Unable to process match request.
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
     KycMatchResponse:
       type: object
       properties:
@@ -113,6 +104,15 @@ components:
           - 'true'
           - 'false'
           - not_available
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
     KycMatchRequest:
       type: object
       properties:

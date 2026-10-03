@@ -119,18 +119,6 @@ components:
         message:
           type: string
           description: Human-readable error description.
-    NumberVerificationRequest:
-      type: object
-      required:
-      - phoneNumber
-      properties:
-        phoneNumber:
-          type: string
-          description: Phone number to verify in E.164 format.
-          pattern: ^\+[1-9][0-9]{4,14}$
-          example: '+34123456789'
-        device:
-          $ref: '#/components/schemas/Device'
     Device:
       type: object
       description: Identifies the device for which the verification is requested.
@@ -150,6 +138,18 @@ components:
               type: integer
         ipv6Address:
           type: string
+    NumberVerificationRequest:
+      type: object
+      required:
+      - phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+          description: Phone number to verify in E.164 format.
+          pattern: ^\+[1-9][0-9]{4,14}$
+          example: '+34123456789'
+        device:
+          $ref: '#/components/schemas/Device'
   securitySchemes:
     openIdConnect:
       type: openIdConnect

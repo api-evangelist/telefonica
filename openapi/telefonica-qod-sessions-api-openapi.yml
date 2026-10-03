@@ -120,6 +120,13 @@ paths:
           description: Session not found.
 components:
   schemas:
+    ApplicationServer:
+      type: object
+      properties:
+        ipv4Address:
+          type: string
+        ipv6Address:
+          type: string
     CreateSessionRequest:
       type: object
       required:
@@ -151,11 +158,30 @@ components:
         notificationAuthToken:
           type: string
           description: Authentication token for webhook notifications.
-    ApplicationServer:
+    ErrorResponse:
       type: object
       properties:
-        ipv4Address:
+        status:
+          type: integer
+        code:
           type: string
+        message:
+          type: string
+    Device:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9][0-9]{4,14}$
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
         ipv6Address:
           type: string
     SessionInfo:
@@ -185,32 +211,6 @@ components:
           format: date-time
         duration:
           type: integer
-    Device:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          pattern: ^\+[1-9][0-9]{4,14}$
-        networkAccessIdentifier:
-          type: string
-        ipv4Address:
-          type: object
-          properties:
-            publicAddress:
-              type: string
-            publicPort:
-              type: integer
-        ipv6Address:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
   securitySchemes:
     openIdConnect:
       type: openIdConnect

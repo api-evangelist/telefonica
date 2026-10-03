@@ -58,15 +58,6 @@ paths:
           description: Unable to determine roaming status.
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
     RoamingStatusResponse:
       type: object
       properties:
@@ -101,6 +92,15 @@ components:
             publicPort:
               type: integer
         ipv6Address:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        code:
+          type: string
+        message:
           type: string
   securitySchemes:
     openIdConnect:

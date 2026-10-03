@@ -93,38 +93,6 @@ components:
               longitude:
                 type: number
                 format: double
-    Device:
-      type: object
-      description: Device to verify location for.
-      properties:
-        phoneNumber:
-          type: string
-          pattern: ^\+[1-9][0-9]{4,14}$
-        networkAccessIdentifier:
-          type: string
-        ipv4Address:
-          type: object
-          properties:
-            publicAddress:
-              type: string
-            publicPort:
-              type: integer
-        ipv6Address:
-          type: string
-    LocationVerificationRequest:
-      type: object
-      required:
-      - device
-      - area
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-        area:
-          $ref: '#/components/schemas/Area'
-        maxAge:
-          type: integer
-          description: Maximum age of location data in seconds.
-          minimum: 60
     LocationVerificationResponse:
       type: object
       properties:
@@ -145,6 +113,24 @@ components:
           type: string
           format: date-time
           description: Timestamp of the most recent location data used.
+    Device:
+      type: object
+      description: Device to verify location for.
+      properties:
+        phoneNumber:
+          type: string
+          pattern: ^\+[1-9][0-9]{4,14}$
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
+        ipv6Address:
+          type: string
     ErrorResponse:
       type: object
       properties:
@@ -154,6 +140,20 @@ components:
           type: string
         message:
           type: string
+    LocationVerificationRequest:
+      type: object
+      required:
+      - device
+      - area
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+        area:
+          $ref: '#/components/schemas/Area'
+        maxAge:
+          type: integer
+          description: Maximum age of location data in seconds.
+          minimum: 60
   securitySchemes:
     openIdConnect:
       type: openIdConnect
