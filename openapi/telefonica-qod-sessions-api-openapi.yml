@@ -120,11 +120,21 @@ paths:
           description: Session not found.
 components:
   schemas:
-    ApplicationServer:
+    Device:
       type: object
       properties:
-        ipv4Address:
+        phoneNumber:
           type: string
+          pattern: ^\+[1-9][0-9]{4,14}$
+        networkAccessIdentifier:
+          type: string
+        ipv4Address:
+          type: object
+          properties:
+            publicAddress:
+              type: string
+            publicPort:
+              type: integer
         ipv6Address:
           type: string
     CreateSessionRequest:
@@ -167,23 +177,6 @@ components:
           type: string
         message:
           type: string
-    Device:
-      type: object
-      properties:
-        phoneNumber:
-          type: string
-          pattern: ^\+[1-9][0-9]{4,14}$
-        networkAccessIdentifier:
-          type: string
-        ipv4Address:
-          type: object
-          properties:
-            publicAddress:
-              type: string
-            publicPort:
-              type: integer
-        ipv6Address:
-          type: string
     SessionInfo:
       type: object
       properties:
@@ -211,6 +204,13 @@ components:
           format: date-time
         duration:
           type: integer
+    ApplicationServer:
+      type: object
+      properties:
+        ipv4Address:
+          type: string
+        ipv6Address:
+          type: string
   securitySchemes:
     openIdConnect:
       type: openIdConnect
