@@ -303,6 +303,12 @@ apis:
   - type: Documentation
     url: https://opengateway.telefonica.com/en/apis/device-roaming-status
 common:
+  - type: Plans
+    url: plans/telefonica-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/telefonica-rate-limits.yml
+  - type: FinOps
+    url: finops/telefonica-finops.yml
   - type: CapabilityMap
     url: capabilities/telefonica-capability-edges.yml
     name: Telefónica Business Capability Map
