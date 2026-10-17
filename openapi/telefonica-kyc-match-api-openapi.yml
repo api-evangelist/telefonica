@@ -53,57 +53,6 @@ paths:
           description: Unable to process match request.
 components:
   schemas:
-    KycMatchResponse:
-      type: object
-      properties:
-        phoneNumberMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        idDocumentMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        nameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        givenNameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        familyNameMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        addressMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        birthdateMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
-        emailMatch:
-          type: string
-          enum:
-          - 'true'
-          - 'false'
-          - not_available
     ErrorResponse:
       type: object
       properties:
@@ -178,6 +127,57 @@ components:
           - MALE
           - FEMALE
           - OTHER
+    KycMatchResponse:
+      type: object
+      properties:
+        phoneNumberMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        idDocumentMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        nameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        givenNameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        familyNameMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        addressMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        birthdateMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
+        emailMatch:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - not_available
   securitySchemes:
     openIdConnect:
       type: openIdConnect
